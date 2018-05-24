@@ -5,8 +5,10 @@ class NewsViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var currentUser: User?
     var selectedEvent: Event?
+    var currentUser: User?
     
-    @IBOutlet weak var addButton: UIButton!
+    
+    @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var newsTableView: UITableView!
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -47,7 +49,12 @@ class NewsViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        selectedEvent?.news.append(n1)
+        
+        if selectedEvent?.organizer != currentUser {
+            
+            addButton.isEnabled = false
+            
+        }
         
         for news in (selectedEvent?.news)! {
             news.eventIcon = selectedEvent?.image
