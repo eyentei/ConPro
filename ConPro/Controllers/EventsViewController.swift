@@ -44,6 +44,9 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         pastEvents = u1.eventsVisited.filter({$0.timeEnd! < Date()}).sorted(by: { $0.timeStart! > $1.timeStart! })
         currentEvents = u1.eventsVisited.filter({$0.timeEnd! >= Date()}).sorted(by: { $0.timeStart! < $1.timeStart! })
         
+        self.title = "Profile"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: UIFont(name: "Futura-Bold", size: 20)!]
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

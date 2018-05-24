@@ -8,6 +8,8 @@ class EventViewController: UIViewController, UICollectionViewDelegate, UICollect
     @IBOutlet weak var eventNameLabel: UILabel!
     @IBOutlet weak var eventImage: UIImageView!
     
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return menu.count
     }
@@ -39,6 +41,10 @@ class EventViewController: UIViewController, UICollectionViewDelegate, UICollect
         super.viewDidLoad()
         eventNameLabel.text = selectedEvent?.name
         eventImage.image = selectedEvent?.image
+        
+        self.title = selectedEvent?.name!
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: UIFont(name: "Futura-Bold", size: 20)!]
+        
     }
 
     override func didReceiveMemoryWarning() {
