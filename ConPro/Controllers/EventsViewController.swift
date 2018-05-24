@@ -101,7 +101,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             if let indexPath = eventsTableView.indexPathForSelectedRow {
 
                 let vc = segue.destination as! EventViewController
-                
+                vc.currentUser = currentUser
                 switch indexPath.section {
                 case 0:
                     vc.selectedEvent = currentEvents[indexPath.row]
@@ -162,9 +162,5 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-
-    func split() {
-        
     }
 }

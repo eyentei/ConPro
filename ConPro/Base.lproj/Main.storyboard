@@ -1072,10 +1072,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="D1g-wh-7Di"/>
                     </view>
+                    <navigationItem key="navigationItem" id="3qa-3Z-dqu">
+                        <barButtonItem key="rightBarButtonItem" title="Join" style="plain" id="H1b-1A-Srg"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="eventImage" destination="QES-oW-40U" id="4qF-st-kZl"/>
                         <outlet property="eventNameLabel" destination="Aoq-X3-oLK" id="rAr-c4-cv7"/>
                         <outlet property="menuCollectionView" destination="NAP-eZ-5dZ" id="Jkv-Fs-amR"/>
+                        <outlet property="statusButton" destination="H1b-1A-Srg" id="K23-R6-Z44"/>
                         <segue destination="vTd-Ak-6hZ" kind="show" identifier="News Feed" id="ebc-SE-Vz5"/>
                     </connections>
                 </viewController>

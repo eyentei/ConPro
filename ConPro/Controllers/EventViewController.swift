@@ -3,11 +3,13 @@ import UIKit
 class EventViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var selectedEvent: Event?
-    var menu = [[#imageLiteral(resourceName: "info"),"Info"],[#imageLiteral(resourceName: "news"),"News Feed"],[#imageLiteral(resourceName: "people"),"Participants"],[#imageLiteral(resourceName: "calendar"),"Schedule"],[#imageLiteral(resourceName: "map"),"Map"],[#imageLiteral(resourceName: "mic"),"Speakers"],[#imageLiteral(resourceName: "chat"),"Chat"],[#imageLiteral(resourceName: "list"),"Subevents"]]
+    var currentUser: User?
+
+    var menu = [[#imageLiteral(resourceName: "info"),"Info"],[#imageLiteral(resourceName: "news"),"News Feed"],[#imageLiteral(resourceName: "people"),"Participants"],[#imageLiteral(resourceName: "calendar"),"Schedule"],[#imageLiteral(resourceName: "map"),"Map"],[#imageLiteral(resourceName: "mic"),"Speakers"],[#imageLiteral(resourceName: "chat"),"Chat"],[#imageLiteral(resourceName: "list"),"Subevents"],[#imageLiteral(resourceName: "stats"),"Statistics"]]
     @IBOutlet weak var menuCollectionView: UICollectionView!
     @IBOutlet weak var eventNameLabel: UILabel!
     @IBOutlet weak var eventImage: UIImageView!
-    
+    @IBOutlet weak var statusButton: UIBarButtonItem!
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -41,6 +43,7 @@ class EventViewController: UIViewController, UICollectionViewDelegate, UICollect
         super.viewDidLoad()
         eventNameLabel.text = selectedEvent?.name
         eventImage.image = selectedEvent?.image?.image
+        //statusButton.title = currentUser?.eventsVisited.filter({$0.id == selectedEvent?.id}) ? "Leave" : "Join"
 
     }
 
