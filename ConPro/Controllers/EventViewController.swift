@@ -20,7 +20,9 @@ class EventViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        performSegue(withIdentifier: menu[indexPath.row][1] as! String, sender: self)
+        if menu[indexPath.row][1] as! String == "News Feed" {
+            performSegue(withIdentifier: menu[indexPath.row][1] as! String, sender: self)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
