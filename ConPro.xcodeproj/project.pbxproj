@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		94AD3DAB20B5996900C79B79 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AD3DAA20B5996900C79B79 /* News.swift */; };
 		94AD3DAF20B59A2C00C79B79 /* EventAdderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AD3DAE20B59A2C00C79B79 /* EventAdderViewController.swift */; };
 		AA187C212094895600D29D5E /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA187C202094895600D29D5E /* APIService.swift */; };
 		AA47E79620AC41DA00F4F1DF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA47E79520AC41DA00F4F1DF /* Extensions.swift */; };
@@ -155,7 +154,7 @@
 				AA88F1D2209538B200B34365 /* EventsViewController.swift */,
 				AA88F1D6209C4E7E00B34365 /* EventViewController.swift */,
 				F8EE79CC20B4E10E003305E5 /* NewsViewController.swift */,
-				94AD3DAE20B59A2C00C79B79 /* EventAdderViewController.swift */
+				94AD3DAE20B59A2C00C79B79 /* EventAdderViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -446,14 +445,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9TJRJQKBAR;
+				DEVELOPMENT_TEAM = H9G9M9M399;
 				INFOPLIST_FILE = ConPro/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ConPro.ConPro;
+				PRODUCT_BUNDLE_IDENTIFIER = ConPro.ConPro1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -466,14 +465,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9TJRJQKBAR;
+				DEVELOPMENT_TEAM = H9G9M9M399;
 				INFOPLIST_FILE = ConPro/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ConPro.ConPro;
+				PRODUCT_BUNDLE_IDENTIFIER = ConPro.ConPro1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
