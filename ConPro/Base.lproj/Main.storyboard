@@ -1225,9 +1225,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" horizontalCompressionResistancePriority="748" text="Message" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Czm-aV-Hqc">
-                                                    <rect key="frame" x="15" y="47" width="334" height="213"/>
+                                                    <rect key="frame" x="15" y="47" width="334" height="142"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="213" id="YJi-5b-FTJ"/>
+                                                        <constraint firstAttribute="height" constant="142" id="YJi-5b-FTJ"/>
                                                         <constraint firstAttribute="width" constant="334" id="yow-h8-ABN"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
