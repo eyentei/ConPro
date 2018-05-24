@@ -47,6 +47,16 @@ class NewsViewController: UIViewController, UITableViewDelegate, UITableViewData
         return 15
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        
+        if segue.identifier == "segueToNewsAdder" {
+            
+            let vc = segue.destination as! NewsAdderViewController
+            vc.selectedEvent = selectedEvent
+            
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,11 +64,6 @@ class NewsViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             addButton.isEnabled = false
             
-        }
-        
-        for news in (selectedEvent?.news)! {
-            news.eventIcon = selectedEvent?.image
-            news.name = selectedEvent?.name
         }
         
         self.navigationItem.title = "News"
