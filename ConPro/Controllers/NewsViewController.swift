@@ -23,8 +23,13 @@ class NewsViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         n = selectedEvent?.news[indexPath.row]
         
+        let dateFormatter : DateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy.MM.dd, HH:mm"
+        
         cell.newsHeader.text = n!.name
         cell.newsMessage.text = n!.message
+        cell.eventIcon.image = n!.eventIcon
+        cell.dateTime.text = dateFormatter.string(from: n!.dateTime!)
         
         return cell
         
@@ -37,13 +42,17 @@ class NewsViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10
+        return 15
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         selectedEvent?.news.append(n1)
         
+        for news in (selectedEvent?.news)! {
+            news.eventIcon = selectedEvent?.image
+            news.name = selectedEvent?.name
+        }
         // wrap by checking if user is organizer
         //if true {
         //    addButton.isHidden = false

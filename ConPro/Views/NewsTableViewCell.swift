@@ -4,6 +4,8 @@ class NewsTableViewCell : UITableViewCell {
     
     @IBOutlet weak var newsHeader: UILabel!
     @IBOutlet weak var newsMessage: UILabel!
+    @IBOutlet weak var eventIcon: UIImageView!
+    @IBOutlet weak var dateTime: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
