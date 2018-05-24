@@ -35,6 +35,7 @@ class EventViewController: UIViewController, UICollectionViewDelegate, UICollect
             
             let vc = segue.destination as! NewsViewController
             vc.selectedEvent = selectedEvent
+            vc.currentUser = currentUser
               
         }
     }

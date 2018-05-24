@@ -1291,6 +1291,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Add news" id="jp4-lx-H8R"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="addButton" destination="jp4-lx-H8R" id="ddo-02-e8b"/>
                         <outlet property="newsTableView" destination="MpU-TF-Gwf" id="8rg-No-KHU"/>
                     </connections>
                 </viewController>
