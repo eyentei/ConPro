@@ -42,7 +42,7 @@ class EventViewController: UIViewController, UICollectionViewDelegate, UICollect
         eventNameLabel.text = selectedEvent?.name
         eventImage.image = selectedEvent?.image
         
-        self.title = selectedEvent?.name!
+        self.title = "Event"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: UIFont(name: "Futura-Bold", size: 20)!]
         
     }
