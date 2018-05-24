@@ -34,6 +34,7 @@ class EventViewController: UIViewController, UICollectionViewDelegate, UICollect
         case "News Feed":
             let vc = segue.destination as! NewsViewController
             vc.selectedEvent = selectedEvent
+            vc.currentUser = currentUser
         case "Info":
             let vc = segue.destination as! InfoViewController
             vc.selectedEvent = selectedEvent
