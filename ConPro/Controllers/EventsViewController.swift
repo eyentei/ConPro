@@ -6,15 +6,22 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     let sections = ["Current & future events", "Past events"]
     var pastEvents: [Event] = []
     var currentEvents: [Event] = []
+    var currentUser: User!
     
     @IBOutlet weak var eventsTableView: UITableView!
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var switchLabel: UILabel!
+    @IBOutlet weak var eventsSwitch: UISwitch!
+    @IBOutlet weak var visitorOrganizerSC: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        userName.text = u1.name
-        userImage.image = u1.image
+        loadEvents()
+        
+        currentUser = u1
+        userName.text = currentUser.name
+        userImage.image = UIImage(named: currentUser.image!)
         /*let data = UserDefaults.standard.data(forKey: "token")
         let token = Token().fromJSON(json: data!).authToken!
         let authPlugin = AccessTokenPlugin(tokenClosure: token)
@@ -37,16 +44,12 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         }*/
         
-        u1.eventsVisited = [cats,ch,ti,ev]
-        u1.eventsOrganized = [cc]
-        u2.eventsOrganized = [cats,ch,ti,ev]
+        u1.eventsVisited = Array(addedEvents[0...3])
+        print(addedEvents.filter({$0.organizer == u1}))
+        u1.eventsOrganized = addedEvents.filter({$0.organizer?.id == u1.id})
+        u2.eventsOrganized = addedEvents.filter({$0.organizer?.id == u2.id})
         
-        pastEvents = u1.eventsVisited.filter({$0.timeEnd! < Date()}).sorted(by: { $0.timeStart! > $1.timeStart! })
-        currentEvents = u1.eventsVisited.filter({$0.timeEnd! >= Date()}).sorted(by: { $0.timeStart! < $1.timeStart! })
-        
-        self.title = "Profile"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: UIFont(name: "Futura-Bold", size: 20)!]
-        
+        checkStatus()        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -79,7 +82,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         cell.eventName.text = e!.name
         cell.eventDates.text = (e!.timeStart?.toString())!+" - "+(e!.timeEnd?.toString())!
-        cell.eventImage.image = e!.image
+        cell.eventImage.image = UIImage(named: e!.image!)
         cell.eventPlace.text = e!.place
         return cell
     }
@@ -111,25 +114,47 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     @IBAction func indexChanged(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex
-        {
-        case 0:
-            pastEvents = u1.eventsVisited.filter({$0.timeEnd! < Date()}).sorted(by: { $0.timeStart! > $1.timeStart! })
-            currentEvents = u1.eventsVisited.filter({$0.timeEnd! >= Date()}).sorted(by: { $0.timeStart! < $1.timeStart! })
-            eventsTableView.reloadData()
-        case 1:
-            pastEvents = u1.eventsOrganized.filter({$0.timeEnd! < Date()}).sorted(by: { $0.timeStart! > $1.timeStart! })
-            currentEvents = u1.eventsOrganized.filter({$0.timeEnd! >= Date()}).sorted(by: { $0.timeStart! < $1.timeStart! })
-            eventsTableView.reloadData()
-        default:
-            break
-        }
+        changeSelection()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         // to do later
     }
     
+    
+    @IBAction func switchToggled(_ sender: UISwitch) {
+        checkStatus()
+    }
+    
+    func checkStatus() {
+        if eventsSwitch.isOn {
+            switchLabel.text = "Showing my events"
+            pastEvents = currentUser.eventsVisited.filter({$0.timeEnd! < Date()}).sorted(by: { $0.timeStart! > $1.timeStart! })
+            currentEvents = currentUser.eventsVisited.filter({$0.timeEnd! >= Date()}).sorted(by: { $0.timeStart! < $1.timeStart! })
+        } else {
+            switchLabel.text = "Showing all events"
+            pastEvents = addedEvents.filter({$0.timeEnd! < Date()}).sorted(by: { $0.timeStart! > $1.timeStart! })
+            currentEvents = addedEvents.filter({$0.timeEnd! >= Date()}).sorted(by: { $0.timeStart! < $1.timeStart! })
+        }
+        
+        eventsTableView.reloadData()
+    }
+    
+    func changeSelection() {
+        switch visitorOrganizerSC.selectedSegmentIndex
+        {
+        case 0:
+            checkStatus()
+            eventsSwitch.isEnabled = true
+        case 1:
+            pastEvents = currentUser.eventsOrganized.filter({$0.timeEnd! < Date()}).sorted(by: { $0.timeStart! > $1.timeStart! })
+            currentEvents = currentUser.eventsOrganized.filter({$0.timeEnd! >= Date()}).sorted(by: { $0.timeStart! < $1.timeStart! })
+            eventsSwitch.isEnabled = false
+            eventsTableView.reloadData()
+        default:
+            break
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

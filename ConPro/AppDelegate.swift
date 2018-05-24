@@ -10,15 +10,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         provider = MoyaProvider<APIService>()
         //UserDefaults.standard.removeObject(forKey: "token")
+        //UserDefaults.standard.removeObject(forKey: "events")
         if UserDefaults.standard.data(forKey: "token") != nil {
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RootNavigationControllerID")
             self.window?.rootViewController = vc
         }
-        //UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-        //UINavigationBar.appearance().shadowImage = UIImage()
-        //UINavigationBar.appearance().backgroundColor = .clear
-        //UINavigationBar.appearance().isTranslucent = true
-
+        UILabel.appearance().adjustsFontSizeToFitWidth = true
+        
         return true
     }
 

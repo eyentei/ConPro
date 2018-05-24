@@ -1,15 +1,15 @@
 import UIKit
 
-class Event: NSObject {
+class Event: NSObject, Codable {
     var id: Int?
     var name: String?
-    var image: UIImage?
+    var image: String?
     var timeStart: Date?
     var timeEnd: Date?
     var place: String?
     var organizer: User?
     var news = [News]()
-    init(id: Int, name: String, image: UIImage, timeStart: Date, timeEnd: Date, place: String, organizer: User) {
+    init(id: Int, name: String, image: String, timeStart: Date, timeEnd: Date, place: String, organizer: User) {
         self.id = id
         self.name = name
         self.image = image

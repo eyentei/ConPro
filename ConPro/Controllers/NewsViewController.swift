@@ -28,7 +28,7 @@ class NewsViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         cell.newsHeader.text = n!.name
         cell.newsMessage.text = n!.message
-        cell.eventIcon.image = n!.eventIcon
+        cell.eventIcon.image = UIImage(named: n!.eventIcon!)
         cell.dateTime.text = dateFormatter.string(from: n!.dateTime!)
         
         return cell
@@ -54,8 +54,7 @@ class NewsViewController: UIViewController, UITableViewDelegate, UITableViewData
             news.name = selectedEvent?.name
         }
         
-        self.title = "News"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: UIFont(name: "Futura-Bold", size: 20)!]
+        self.navigationItem.title = "News"
         
         // wrap by checking if user is organizer
         //if true {

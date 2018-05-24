@@ -40,11 +40,8 @@ class EventViewController: UIViewController, UICollectionViewDelegate, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         eventNameLabel.text = selectedEvent?.name
-        eventImage.image = selectedEvent?.image
-        
-        self.title = selectedEvent?.name!
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: UIFont(name: "Futura-Bold", size: 20)!]
-        
+        eventImage.image = UIImage(named: (selectedEvent?.image)!)
+
     }
 
     override func didReceiveMemoryWarning() {

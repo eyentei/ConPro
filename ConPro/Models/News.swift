@@ -1,11 +1,11 @@
 
 import UIKit
 
-class News: NSObject {
+class News: NSObject,Codable {
     var id: Int?
     var name: String?
     var message: String?
-    var eventIcon: UIImage?
+    var eventIcon: String?
     var dateTime: Date?
     init(id: Int, name: String, message: String) {
         self.id = id
