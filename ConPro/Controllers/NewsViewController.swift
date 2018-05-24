@@ -3,10 +3,8 @@ import UIKit
 
 class NewsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    
-    var selectedEvent: Event?
     var currentUser: User?
-    
+    var selectedEvent: Event?    
     
     @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var newsTableView: UITableView!

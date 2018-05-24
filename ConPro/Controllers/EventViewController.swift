@@ -24,20 +24,24 @@ class EventViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if menu[indexPath.row][1] as! String == "News Feed" {
+        if menu[indexPath.row][1] as! String == "News Feed" || menu[indexPath.row][1] as! String == "Info"{
             performSegue(withIdentifier: menu[indexPath.row][1] as! String, sender: self)
-        }
+        }// after every window is created if statement can be deleted
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        
-        if segue.identifier == "News Feed" {
-            
+        switch segue.identifier {
+        case "News Feed":
             let vc = segue.destination as! NewsViewController
             vc.selectedEvent = selectedEvent
             vc.currentUser = currentUser
-              
+        case "Info":
+            let vc = segue.destination as! InfoViewController
+            vc.selectedEvent = selectedEvent
+        default:
+            break
         }
+        
     }
     
     override func viewDidLoad() {

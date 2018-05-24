@@ -10,6 +10,7 @@
 		94AD3DAF20B59A2C00C79B79 /* EventAdderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AD3DAE20B59A2C00C79B79 /* EventAdderViewController.swift */; };
 		AA187C212094895600D29D5E /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA187C202094895600D29D5E /* APIService.swift */; };
 		AA47E79620AC41DA00F4F1DF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA47E79520AC41DA00F4F1DF /* Extensions.swift */; };
+		AA7A3F2420B7510C00FCD74D /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7A3F2320B7510C00FCD74D /* InfoViewController.swift */; };
 		AA84272920B0B504009C853C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84272820B0B504009C853C /* User.swift */; };
 		AA84272B20B0CE04009C853C /* HardcodedThings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84272A20B0CE04009C853C /* HardcodedThings.swift */; };
 		AA88F1D3209538B200B34365 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA88F1D2209538B200B34365 /* EventsViewController.swift */; };
@@ -39,6 +40,7 @@
 		94AD3DAE20B59A2C00C79B79 /* EventAdderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAdderViewController.swift; sourceTree = "<group>"; };
 		AA187C202094895600D29D5E /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		AA47E79520AC41DA00F4F1DF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		AA7A3F2320B7510C00FCD74D /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		AA84272820B0B504009C853C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AA84272A20B0CE04009C853C /* HardcodedThings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardcodedThings.swift; sourceTree = "<group>"; };
 		AA88F1D2209538B200B34365 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				F8EE79CC20B4E10E003305E5 /* NewsViewController.swift */,
 				94AD3DAE20B59A2C00C79B79 /* EventAdderViewController.swift */,
 				F862C3EF20B75D7D0064828C /* NewsAdderViewController.swift */,
+				AA7A3F2320B7510C00FCD74D /* InfoViewController.swift */
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				F8A023EE20B5B19B00E5A96A /* NewsTableViewCell.swift in Sources */,
 				AAB6B4232094B862008C4CB2 /* Token.swift in Sources */,
 				F862C3F020B75D7D0064828C /* NewsAdderViewController.swift in Sources */,
+				AA7A3F2420B7510C00FCD74D /* InfoViewController.swift in Sources */,
 				F8EE79CD20B4E10E003305E5 /* NewsViewController.swift in Sources */,
 				AA90E119208F76B900639262 /* LoginViewController.swift in Sources */,
 				F892545220B4D1E500E94C31 /* News.swift in Sources */,
