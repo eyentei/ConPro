@@ -1017,11 +1017,6 @@
                                     <outlet property="delegate" destination="vTd-Ak-6hZ" id="e6h-XV-BSw"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0t-7U-c3T">
-                                <rect key="frame" x="356" y="26" width="30" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="+"/>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="News" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZfN-V2-BZT">
                                 <rect key="frame" x="136" y="26" width="143" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1032,19 +1027,14 @@
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="b0t-7U-c3T" firstAttribute="top" secondItem="XjH-ed-hdb" secondAttribute="top" constant="26" id="6au-j3-LWn"/>
                             <constraint firstItem="DG6-1I-oEQ" firstAttribute="bottom" secondItem="MpU-TF-Gwf" secondAttribute="bottom" constant="20" id="7Xx-kQ-jwe"/>
-                            <constraint firstItem="MpU-TF-Gwf" firstAttribute="top" secondItem="b0t-7U-c3T" secondAttribute="bottom" constant="27" id="DWy-2l-6XR"/>
                             <constraint firstItem="MpU-TF-Gwf" firstAttribute="leading" secondItem="DG6-1I-oEQ" secondAttribute="leading" id="NDo-gt-qn4"/>
                             <constraint firstItem="DG6-1I-oEQ" firstAttribute="trailing" secondItem="MpU-TF-Gwf" secondAttribute="trailing" id="PXy-LO-i0E"/>
                             <constraint firstItem="MpU-TF-Gwf" firstAttribute="top" secondItem="DG6-1I-oEQ" secondAttribute="top" constant="19" id="b0x-Xh-gyt"/>
-                            <constraint firstItem="b0t-7U-c3T" firstAttribute="leading" secondItem="XjH-ed-hdb" secondAttribute="leading" constant="356" id="h7r-by-hl7"/>
-                            <constraint firstAttribute="trailing" secondItem="b0t-7U-c3T" secondAttribute="trailing" constant="28" id="p44-0C-tWT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DG6-1I-oEQ"/>
                     </view>
                     <connections>
-                        <outlet property="addButton" destination="b0t-7U-c3T" id="Usd-LR-l1l"/>
                         <outlet property="newsTableView" destination="MpU-TF-Gwf" id="8rg-No-KHU"/>
                     </connections>
                 </viewController>
