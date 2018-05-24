@@ -8,6 +8,7 @@ class Event: NSObject, Codable {
     var timeEnd: Date?
     var place: String?
     var organizer: User?
+    var сategory: String?
     var news = [News]()
     init(id: Int, name: String, image: Data, timeStart: Date, timeEnd: Date, place: String, organizer: User) {
         self.id = id

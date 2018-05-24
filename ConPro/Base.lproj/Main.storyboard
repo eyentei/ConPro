@@ -1073,7 +1073,11 @@
                         <viewLayoutGuide key="safeArea" id="D1g-wh-7Di"/>
                     </view>
                     <navigationItem key="navigationItem" id="3qa-3Z-dqu">
-                        <barButtonItem key="rightBarButtonItem" title="Join" style="plain" id="H1b-1A-Srg"/>
+                        <barButtonItem key="rightBarButtonItem" title="Subscribe" style="plain" id="H1b-1A-Srg">
+                            <connections>
+                                <action selector="subscribeOrUnsubscribe:" destination="GWt-Wr-4PR" id="dYn-js-Brq"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="eventImage" destination="QES-oW-40U" id="4qF-st-kZl"/>

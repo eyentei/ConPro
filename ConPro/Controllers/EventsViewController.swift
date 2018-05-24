@@ -23,7 +23,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         loadEvents()
         currentUser = u1
         allEvents = addedEvents
-        u1.eventsVisited = Array(addedEvents[0...3])
+        u1.eventsVisited = Array(addedEvents[1...3])
         u1.eventsOrganized = addedEvents.filter({$0.organizer?.id == u1.id})
         u2.eventsOrganized = addedEvents.filter({$0.organizer?.id == u2.id})
         userName.text = currentUser.name

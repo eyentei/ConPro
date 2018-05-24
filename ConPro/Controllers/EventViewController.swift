@@ -5,7 +5,7 @@ class EventViewController: UIViewController, UICollectionViewDelegate, UICollect
     var selectedEvent: Event?
     var currentUser: User?
 
-    var menu = [[#imageLiteral(resourceName: "info"),"Info"],[#imageLiteral(resourceName: "news"),"News Feed"],[#imageLiteral(resourceName: "people"),"Participants"],[#imageLiteral(resourceName: "calendar"),"Schedule"],[#imageLiteral(resourceName: "map"),"Map"],[#imageLiteral(resourceName: "mic"),"Speakers"],[#imageLiteral(resourceName: "chat"),"Chat"],[#imageLiteral(resourceName: "list"),"Subevents"],[#imageLiteral(resourceName: "stats"),"Statistics"]]
+    var menu = [[#imageLiteral(resourceName: "info"),"Info"],[#imageLiteral(resourceName: "news"),"News Feed"],[#imageLiteral(resourceName: "people"),"Participants"],[#imageLiteral(resourceName: "calendar"),"Schedule"],[#imageLiteral(resourceName: "map"),"Map"],[#imageLiteral(resourceName: "mic"),"Speakers"],[#imageLiteral(resourceName: "chat"),"Chat"],[#imageLiteral(resourceName: "list"),"Subevents"]]
     @IBOutlet weak var menuCollectionView: UICollectionView!
     @IBOutlet weak var eventNameLabel: UILabel!
     @IBOutlet weak var eventImage: UIImageView!
@@ -41,12 +41,20 @@ class EventViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        statusButton.title = currentUser?.eventsVisited.filter({$0.id == selectedEvent?.id}) != [] ? "Unsubscribe" : "Subscribe"
+
+        if selectedEvent?.organizer?.id == currentUser?.id {
+            menu.append([#imageLiteral(resourceName: "stats"),"Statistics"])
+            statusButton.title = "Edit"
+        }
         eventNameLabel.text = selectedEvent?.name
         eventImage.image = selectedEvent?.image?.image
-        //statusButton.title = currentUser?.eventsVisited.filter({$0.id == selectedEvent?.id}) ? "Leave" : "Join"
 
     }
 
+    @IBAction func subscribeOrUnsubscribe(_ sender: UIBarButtonItem) {
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
