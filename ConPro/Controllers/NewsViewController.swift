@@ -56,6 +56,8 @@ class NewsViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         self.navigationItem.title = "News"
         
+        
+        
         // wrap by checking if user is organizer
         //if true {
         //    addButton.isHidden = false
@@ -65,6 +67,7 @@ class NewsViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+
     
 
 }
