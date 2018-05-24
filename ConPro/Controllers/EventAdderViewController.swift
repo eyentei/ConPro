@@ -76,7 +76,7 @@ class EventAdderViewController: UIViewController, UIImagePickerControllerDelegat
     
     @IBAction func CreateEvent(_ sender: Any) {
         //waiting for api
-        let newEvent = Event(id: addedEvents.count, name: TitleTextField.text!, image: ImageView.image!.data!, timeStart: Date(date: DateStart.text!)!, timeEnd: Date(date: DateFinish.text!)!, place: PlaceTextField.text!, organizer: u1)
+        let newEvent = Event(id: addedEvents.count, name: TitleTextField.text!, image: ImageView.image!.data!, timeStart: Date(date: DateStart.text!)!, timeEnd: Date(date: DateFinish.text!)!, place: PlaceTextField.text!, organizer: u1, eventCategory: "", eventDescription: DescriptionTextView.text)
         addedEvents.append(newEvent)
         self.performSegue(withIdentifier: "segueToEvents", sender: self)
     }
