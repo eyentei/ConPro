@@ -53,10 +53,21 @@ class EventViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
 
     @IBAction func subscribeOrUnsubscribe(_ sender: UIBarButtonItem) {
-        
+        switch sender.title {
+        case "Subscribe":
+            currentUser?.eventsVisited.append(selectedEvent!)
+            sender.title = "Unsubscribe"
+        case "Unsubscribe":
+            currentUser?.eventsVisited = (currentUser?.eventsVisited.filter({$0.id != selectedEvent?.id}))!
+            sender.title = "Subscribe"
+        case "Edit": break
+            //segue to event edit screen
+        default:
+            break
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
 }

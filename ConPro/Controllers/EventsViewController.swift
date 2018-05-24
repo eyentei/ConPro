@@ -163,4 +163,10 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        organized = currentUser.eventsOrganized
+        visited = currentUser.eventsVisited
+        eventsTableView.reloadData()
+    }
 }
