@@ -57,6 +57,8 @@ class NewsViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.title = "News"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: UIFont(name: "Futura-Bold", size: 20)!]
         
+        
+        
         // wrap by checking if user is organizer
         //if true {
         //    addButton.isHidden = false

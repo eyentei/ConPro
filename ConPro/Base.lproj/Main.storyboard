@@ -1056,7 +1056,7 @@
             </objects>
             <point key="canvasLocation" x="2981.1594202898555" y="220.10869565217394"/>
         </scene>
-        <!--News View Controller-->
+        <!--Title-->
         <scene sceneID="kuH-gE-hXU">
             <objects>
                 <viewController id="vTd-Ak-6hZ" customClass="NewsViewController" customModule="ConPro" customModuleProvider="target" sceneMemberID="viewController">
@@ -1107,7 +1107,7 @@
                                                 <constraint firstItem="sAL-ME-4K0" firstAttribute="leading" secondItem="XBf-kx-i1m" secondAttribute="leadingMargin" constant="47" id="Ixy-42-5xG"/>
                                                 <constraint firstItem="sAL-ME-4K0" firstAttribute="top" secondItem="XBf-kx-i1m" secondAttribute="top" constant="8" id="Mg3-rU-L7X"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Czm-aV-Hqc" secondAttribute="trailing" constant="20" symbolic="YES" id="OO4-2V-NNu"/>
-                                                <constraint firstItem="sAL-ME-4K0" firstAttribute="trailing" secondItem="XBf-kx-i1m" secondAttribute="trailingMargin" id="R4m-eM-d3q"/>
+                                                <constraint firstItem="sAL-ME-4K0" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="XBf-kx-i1m" secondAttribute="trailingMargin" id="R4m-eM-d3q"/>
                                                 <constraint firstItem="Czm-aV-Hqc" firstAttribute="top" secondItem="sAL-ME-4K0" secondAttribute="bottom" constant="16.666666666666671" id="pTl-PE-ZSV"/>
                                                 <constraint firstItem="Czm-aV-Hqc" firstAttribute="leading" secondItem="sAL-ME-4K0" secondAttribute="leading" constant="-47" id="zya-47-atP"/>
                                             </constraints>
@@ -1142,6 +1142,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DG6-1I-oEQ"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="eBN-L1-Fg1">
+                        <barButtonItem key="rightBarButtonItem" title="Add news" id="jp4-lx-H8R"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="newsTableView" destination="MpU-TF-Gwf" id="8rg-No-KHU"/>
                     </connections>
@@ -1302,6 +1305,6 @@
         <image name="marker" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SCy-ev-Se4"/>
+        <segue reference="95J-jQ-49v"/>
     </inferredMetricsTieBreakers>
 </document>
