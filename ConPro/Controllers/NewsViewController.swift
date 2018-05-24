@@ -28,7 +28,7 @@ class NewsViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         cell.newsHeader.text = n!.name
         cell.newsMessage.text = n!.message
-        cell.eventIcon.image = UIImage(named: n!.eventIcon!)
+        cell.eventIcon.image = n!.eventIcon!.image
         cell.dateTime.text = dateFormatter.string(from: n!.dateTime!)
         
         return cell

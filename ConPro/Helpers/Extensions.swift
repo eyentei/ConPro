@@ -28,3 +28,15 @@ extension Date {
         return formatter.string(from: self)
     }
 }
+
+extension UIImage {
+    var data: Data? {
+        return UIImagePNGRepresentation(self)
+    }
+}
+
+extension Data {
+    var image: UIImage? {
+        return UIImage(data: self)
+    }
+}

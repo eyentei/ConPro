@@ -40,7 +40,7 @@ class EventViewController: UIViewController, UICollectionViewDelegate, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         eventNameLabel.text = selectedEvent?.name
-        eventImage.image = UIImage(named: (selectedEvent?.image)!)
+        eventImage.image = selectedEvent?.image?.image
 
     }
 

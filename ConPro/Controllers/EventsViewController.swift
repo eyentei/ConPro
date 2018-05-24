@@ -21,7 +21,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         currentUser = u1
         userName.text = currentUser.name
-        userImage.image = UIImage(named: currentUser.image!)
+        userImage.image = currentUser.image?.image
         /*let data = UserDefaults.standard.data(forKey: "token")
         let token = Token().fromJSON(json: data!).authToken!
         let authPlugin = AccessTokenPlugin(tokenClosure: token)
@@ -82,7 +82,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         cell.eventName.text = e!.name
         cell.eventDates.text = (e!.timeStart?.toString())!+" - "+(e!.timeEnd?.toString())!
-        cell.eventImage.image = UIImage(named: e!.image!)
+        cell.eventImage.image = e!.image?.image
         cell.eventPlace.text = e!.place
         return cell
     }
