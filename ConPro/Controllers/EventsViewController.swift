@@ -7,6 +7,9 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var pastEvents: [Event] = []
     var currentEvents: [Event] = []
     var currentUser: User!
+    var allEvents: [Event] = []
+    var organized: [Event] = []
+    var visited: [Event] = []
     
     @IBOutlet weak var eventsTableView: UITableView!
     @IBOutlet weak var userImage: UIImageView!
@@ -18,10 +21,15 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         loadEvents()
-        
         currentUser = u1
+        allEvents = addedEvents
+        u1.eventsVisited = Array(addedEvents[0...3])
+        u1.eventsOrganized = addedEvents.filter({$0.organizer?.id == u1.id})
+        u2.eventsOrganized = addedEvents.filter({$0.organizer?.id == u2.id})
         userName.text = currentUser.name
         userImage.image = currentUser.image?.image
+        organized = currentUser.eventsOrganized
+        visited = currentUser.eventsVisited
         /*let data = UserDefaults.standard.data(forKey: "token")
         let token = Token().fromJSON(json: data!).authToken!
         let authPlugin = AccessTokenPlugin(tokenClosure: token)
@@ -43,12 +51,6 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 print(error)
             }
         }*/
-        
-        u1.eventsVisited = Array(addedEvents[0...3])
-        print(addedEvents.filter({$0.organizer == u1}))
-        u1.eventsOrganized = addedEvents.filter({$0.organizer?.id == u1.id})
-        u2.eventsOrganized = addedEvents.filter({$0.organizer?.id == u2.id})
-        
         checkStatus()        
     }
     
@@ -118,7 +120,10 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        // to do later
+        visited = searchText.isEmpty ? currentUser.eventsVisited : currentUser.eventsVisited.filter( { ($0.name?.localizedCaseInsensitiveContains(searchText))! })
+        organized = searchText.isEmpty ? currentUser.eventsOrganized : currentUser.eventsOrganized.filter( { ($0.name?.localizedCaseInsensitiveContains(searchText))! })
+        allEvents = searchText.isEmpty ? addedEvents : addedEvents.filter( { ($0.name?.localizedCaseInsensitiveContains(searchText))! })
+        changeSelection()
     }
     
     
@@ -129,12 +134,12 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func checkStatus() {
         if eventsSwitch.isOn {
             switchLabel.text = "Showing my events"
-            pastEvents = currentUser.eventsVisited.filter({$0.timeEnd! < Date()}).sorted(by: { $0.timeStart! > $1.timeStart! })
-            currentEvents = currentUser.eventsVisited.filter({$0.timeEnd! >= Date()}).sorted(by: { $0.timeStart! < $1.timeStart! })
+            pastEvents = visited.filter({$0.timeEnd! < Date()}).sorted(by: { $0.timeStart! > $1.timeStart! })
+            currentEvents = visited.filter({$0.timeEnd! >= Date()}).sorted(by: { $0.timeStart! < $1.timeStart! })
         } else {
             switchLabel.text = "Showing all events"
-            pastEvents = addedEvents.filter({$0.timeEnd! < Date()}).sorted(by: { $0.timeStart! > $1.timeStart! })
-            currentEvents = addedEvents.filter({$0.timeEnd! >= Date()}).sorted(by: { $0.timeStart! < $1.timeStart! })
+            pastEvents = allEvents.filter({$0.timeEnd! < Date()}).sorted(by: { $0.timeStart! > $1.timeStart! })
+            currentEvents = allEvents.filter({$0.timeEnd! >= Date()}).sorted(by: { $0.timeStart! < $1.timeStart! })
         }
         
         eventsTableView.reloadData()
@@ -147,8 +152,8 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             checkStatus()
             eventsSwitch.isEnabled = true
         case 1:
-            pastEvents = currentUser.eventsOrganized.filter({$0.timeEnd! < Date()}).sorted(by: { $0.timeStart! > $1.timeStart! })
-            currentEvents = currentUser.eventsOrganized.filter({$0.timeEnd! >= Date()}).sorted(by: { $0.timeStart! < $1.timeStart! })
+            pastEvents = organized.filter({$0.timeEnd! < Date()}).sorted(by: { $0.timeStart! > $1.timeStart! })
+            currentEvents = organized.filter({$0.timeEnd! >= Date()}).sorted(by: { $0.timeStart! < $1.timeStart! })
             eventsSwitch.isEnabled = false
             eventsTableView.reloadData()
         default:
@@ -159,4 +164,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.didReceiveMemoryWarning()
     }
 
+    func split() {
+        
+    }
 }
