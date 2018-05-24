@@ -255,17 +255,6 @@
                                     <outlet property="delegate" destination="0RT-In-RAt" id="yga-pf-bT5"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oi8-lA-nz9">
-                                <rect key="frame" x="301" y="208" width="93" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                <state key="normal" title="New event">
-                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="4Fh-Xq-eMv" kind="show" id="haT-zY-9fu"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xxd-GB-DSL">
                                 <rect key="frame" x="168" y="82" width="157" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -304,7 +293,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Dst-2R-6tr"/>
                     </view>
-                    <navigationItem key="navigationItem" id="WfU-8a-rqq"/>
+                    <navigationItem key="navigationItem" id="WfU-8a-rqq">
+                        <barButtonItem key="rightBarButtonItem" title="New event" id="5DG-Kn-T1x">
+                            <connections>
+                                <segue destination="4Fh-Xq-eMv" kind="show" id="cGo-Nv-or5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="eventsTableView" destination="R5t-SW-ziP" id="iUe-4k-RoE"/>
                         <outlet property="userImage" destination="nCW-42-3ed" id="jCB-g2-LhD"/>
@@ -968,7 +963,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Header" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sAL-ME-4K0">
-                                                    <rect key="frame" x="67" y="7.9999999999999982" width="287" height="22.333333333333329"/>
+                                                    <rect key="frame" x="67" y="7.9999999999999982" width="327" height="22.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
