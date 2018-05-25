@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7811074A20B79177004B41C2 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7811074920B79177004B41C2 /* ProfileTableViewController.swift */; };
 		94AD3DAF20B59A2C00C79B79 /* EventAdderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AD3DAE20B59A2C00C79B79 /* EventAdderViewController.swift */; };
 		AA187C212094895600D29D5E /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA187C202094895600D29D5E /* APIService.swift */; };
 		AA47E79620AC41DA00F4F1DF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA47E79520AC41DA00F4F1DF /* Extensions.swift */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		1CCC46CCE5649E3D4112AC0B /* Pods-ConPro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConPro.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConPro/Pods-ConPro.release.xcconfig"; sourceTree = "<group>"; };
+		7811074920B79177004B41C2 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		7CA5C7B39B96C88B4CF553D9 /* Pods_ConPro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ConPro.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		82A9520EBFEEE098670794BF /* Pods-ConPro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConPro.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ConPro/Pods-ConPro.debug.xcconfig"; sourceTree = "<group>"; };
 		94AD3DAA20B5996900C79B79 /* News.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
@@ -160,7 +162,8 @@
 				F8EE79CC20B4E10E003305E5 /* NewsViewController.swift */,
 				94AD3DAE20B59A2C00C79B79 /* EventAdderViewController.swift */,
 				F862C3EF20B75D7D0064828C /* NewsAdderViewController.swift */,
-				AA7A3F2320B7510C00FCD74D /* InfoViewController.swift */
+				AA7A3F2320B7510C00FCD74D /* InfoViewController.swift */,
+				7811074920B79177004B41C2 /* ProfileTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				AAB6B4232094B862008C4CB2 /* Token.swift in Sources */,
 				F862C3F020B75D7D0064828C /* NewsAdderViewController.swift in Sources */,
 				AA7A3F2420B7510C00FCD74D /* InfoViewController.swift in Sources */,
+				7811074A20B79177004B41C2 /* ProfileTableViewController.swift in Sources */,
 				F8EE79CD20B4E10E003305E5 /* NewsViewController.swift in Sources */,
 				AA90E119208F76B900639262 /* LoginViewController.swift in Sources */,
 				F892545220B4D1E500E94C31 /* News.swift in Sources */,

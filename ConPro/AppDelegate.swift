@@ -1,5 +1,7 @@
 import UIKit
 import Moya
+import CoreData
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,7 +19,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         UILabel.appearance().adjustsFontSizeToFitWidth = true
         
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge ]) {
+            (authorized:Bool, error:Error?) in
+            if !authorized {
+                print ("App is useless because you did not allow notifications.")
+            }
+            // let settings  = UNNotificationSettings(options: [.alert, .sound, .badge], categories: nil)
+        }
+        application.registerForRemoteNotifications()
+        
+        //Define Actions
+        let firstAction = UNNotificationAction(identifier: "Nothingchange", title: "We're still on for tomorrow", options: [])
+        let secondAction = UNNotificationAction(identifier: "LittleChange", title: "I'am late", options: [])
+        let thirdAction = UNNotificationAction(identifier: "Canceling", title: "I'm not coming", options: [])
+        
+        //Add action to a eventCategory
+        let category = UNNotificationCategory(identifier: "eventCategory", actions: [firstAction, secondAction, thirdAction], intentIdentifiers: [], options: [])
+        
+        //Add the eventCategory to Notification Framework
+        UNUserNotificationCenter.current().setNotificationCategories([category])
+        
+        
         return true
+    }
+    
+    func sendNotification () {
+        let notification = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        let content = UNMutableNotificationContent()
+        content.title = " You are welcome"
+        content.body = " Just a reminder to visit this event"
+        content.sound = UNNotificationSound.default()
+        content.categoryIdentifier = "eventCategory"
+        
+        let request = UNNotificationRequest(identifier: "eventNotification", content: content, trigger: notification)
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        UNUserNotificationCenter.current().add(request) { (error:Error?)in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+            }
+            
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
