@@ -672,7 +672,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="X7Q-jm-rja" kind="show" id="3OT-QK-Uuo"/>
+                                            <segue destination="X7Q-jm-rja" kind="show" identifier="Edit profile" id="3OT-QK-Uuo"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="Ybn-QZ-njI">
@@ -735,7 +735,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="376" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get statistics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MaG-4w-lue">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show statistics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MaG-4w-lue">
                                                     <rect key="frame" x="20" y="0.0" width="336" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="BAZ-86-Q80"/>
@@ -753,6 +753,9 @@
                                                 <constraint firstItem="MaG-4w-lue" firstAttribute="leading" secondItem="Gt0-Mi-urJ" secondAttribute="leading" constant="20" id="vYn-xd-MoB"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="El9-Vg-aeQ" kind="show" identifier="" id="I3Q-pQ-qA8"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -1927,17 +1930,17 @@
             <objects>
                 <viewController id="El9-Vg-aeQ" customClass="UserStatisticsViewController" customModule="ConPro" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mhH-uI-ZzZ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="INr-5g-ZXo">
-                                <rect key="frame" x="0.0" y="20" width="414" height="716"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0lv-Jy-vt6">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="715"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="671"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j4o-MJ-Wir" customClass="HorizontalBarChartView" customModule="Charts">
-                                                <rect key="frame" x="20" y="127" width="375" height="408"/>
+                                                <rect key="frame" x="20" y="142" width="375" height="349"/>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Events Visited:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXl-uL-s6q">
                                                 <rect key="frame" x="0.0" y="20" width="414" height="22.333333333333329"/>
@@ -1946,7 +1949,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favorite Categories" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fyI-xQ-adB">
-                                                <rect key="frame" x="0.0" y="67.333333333333329" width="414" height="19.666666666666671"/>
+                                                <rect key="frame" x="0.0" y="82.333333333333343" width="414" height="19.666666666666671"/>
                                                 <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="15"/>
                                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1961,7 +1964,7 @@
                                             <constraint firstItem="j4o-MJ-Wir" firstAttribute="centerX" secondItem="0lv-Jy-vt6" secondAttribute="centerX" id="Q8u-6p-mIC"/>
                                             <constraint firstItem="fyI-xQ-adB" firstAttribute="centerX" secondItem="0lv-Jy-vt6" secondAttribute="centerX" id="TE4-bp-DXi"/>
                                             <constraint firstItem="fyI-xQ-adB" firstAttribute="width" secondItem="wXl-uL-s6q" secondAttribute="width" id="cvm-aU-Hg3"/>
-                                            <constraint firstItem="fyI-xQ-adB" firstAttribute="top" secondItem="wXl-uL-s6q" secondAttribute="bottom" constant="25" id="db6-xM-Ls5"/>
+                                            <constraint firstItem="fyI-xQ-adB" firstAttribute="top" secondItem="wXl-uL-s6q" secondAttribute="bottom" constant="40" id="db6-xM-Ls5"/>
                                             <constraint firstItem="j4o-MJ-Wir" firstAttribute="top" secondItem="fyI-xQ-adB" secondAttribute="bottom" constant="40" id="ue6-YZ-x8a"/>
                                             <constraint firstAttribute="bottom" secondItem="j4o-MJ-Wir" secondAttribute="bottom" constant="180" id="veG-Uc-3Wc"/>
                                         </constraints>
