@@ -11,7 +11,18 @@ import UIKit
 
 class ProfileTableViewController: UITableViewController {
     
+    let appDelegate = UIApplication.shared.delegate as? AppDelegate
+    @IBAction func logoutAction(_ sender: Any) {
 
+        //appDelegate?.logout()
+        
+        //let signInPage = self.storyboard?.instantiateInitialViewController() as! LoginViewController
+        //UIApplication.sharedApplication().keyWindow?.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
+        //UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
+        //let appDelegate?.window??.rootViewController = signInPage
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
