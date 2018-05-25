@@ -594,8 +594,8 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0O8-6c-ngo">
                                                 <rect key="frame" x="0.0" y="51.5" width="310" height="82.5"/>
                                                 <subviews>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WaW-fW-ajT">
-                                                        <rect key="frame" x="5" y="8" width="300" height="67"/>
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WaW-fW-ajT">
+                                                        <rect key="frame" x="5" y="5" width="300" height="72.5"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -603,9 +603,10 @@
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstItem="WaW-fW-ajT" firstAttribute="top" secondItem="0O8-6c-ngo" secondAttribute="top" constant="5" id="XVV-Wj-Agp"/>
-                                                    <constraint firstItem="WaW-fW-ajT" firstAttribute="leading" secondItem="0O8-6c-ngo" secondAttribute="leading" constant="5" id="hMT-Sd-wGf"/>
-                                                    <constraint firstAttribute="trailing" secondItem="WaW-fW-ajT" secondAttribute="trailing" constant="5" id="kcj-KM-Gq7"/>
+                                                    <constraint firstAttribute="bottom" secondItem="WaW-fW-ajT" secondAttribute="bottom" constant="5" id="6RA-rt-01J"/>
+                                                    <constraint firstItem="WaW-fW-ajT" firstAttribute="top" secondItem="0O8-6c-ngo" secondAttribute="top" constant="5" id="LtS-Jl-XWp"/>
+                                                    <constraint firstItem="WaW-fW-ajT" firstAttribute="leading" secondItem="0O8-6c-ngo" secondAttribute="leading" constant="5" id="hJW-fw-UDJ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="WaW-fW-ajT" secondAttribute="trailing" constant="5" id="iWm-UJ-OSF"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -635,7 +636,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RDL-yM-2sq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="7Wo-3Y-yYZ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2201.25" y="986.25"/>
+            <point key="canvasLocation" x="2201" y="1190"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="L3b-8s-Q5u">
