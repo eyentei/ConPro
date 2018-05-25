@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		38BED01520B866910006F423 /* AgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BED01320B866910006F423 /* AgeViewController.swift */; };
+		38BED01620B866910006F423 /* AgeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BED01420B866910006F423 /* AgeViewController.xib */; };
+		38BED01920B866A10006F423 /* GenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BED01720B866A10006F423 /* GenderViewController.swift */; };
+		38BED01A20B866A10006F423 /* GenderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BED01820B866A10006F423 /* GenderViewController.xib */; };
+		38BED01D20B866B70006F423 /* EducationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BED01B20B866B70006F423 /* EducationViewController.swift */; };
+		38BED01E20B866B70006F423 /* EducationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BED01C20B866B70006F423 /* EducationViewController.xib */; };
+		38BED02020B8694F0006F423 /* EventStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BED01F20B8694F0006F423 /* EventStatsViewController.swift */; };
 		7811074A20B79177004B41C2 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7811074920B79177004B41C2 /* ProfileTableViewController.swift */; };
 		94AD3DAF20B59A2C00C79B79 /* EventAdderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AD3DAE20B59A2C00C79B79 /* EventAdderViewController.swift */; };
 		AA187C212094895600D29D5E /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA187C202094895600D29D5E /* APIService.swift */; };
@@ -35,6 +42,13 @@
 
 /* Begin PBXFileReference section */
 		1CCC46CCE5649E3D4112AC0B /* Pods-ConPro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConPro.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConPro/Pods-ConPro.release.xcconfig"; sourceTree = "<group>"; };
+		38BED01320B866910006F423 /* AgeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeViewController.swift; sourceTree = "<group>"; };
+		38BED01420B866910006F423 /* AgeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AgeViewController.xib; sourceTree = "<group>"; };
+		38BED01720B866A10006F423 /* GenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderViewController.swift; sourceTree = "<group>"; };
+		38BED01820B866A10006F423 /* GenderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenderViewController.xib; sourceTree = "<group>"; };
+		38BED01B20B866B70006F423 /* EducationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducationViewController.swift; sourceTree = "<group>"; };
+		38BED01C20B866B70006F423 /* EducationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EducationViewController.xib; sourceTree = "<group>"; };
+		38BED01F20B8694F0006F423 /* EventStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStatsViewController.swift; sourceTree = "<group>"; };
 		7811074920B79177004B41C2 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		7CA5C7B39B96C88B4CF553D9 /* Pods_ConPro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ConPro.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		82A9520EBFEEE098670794BF /* Pods-ConPro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConPro.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ConPro/Pods-ConPro.debug.xcconfig"; sourceTree = "<group>"; };
@@ -77,6 +91,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		38BED01220B866720006F423 /* StatsVC */ = {
+			isa = PBXGroup;
+			children = (
+				38BED01320B866910006F423 /* AgeViewController.swift */,
+				38BED01420B866910006F423 /* AgeViewController.xib */,
+				38BED01720B866A10006F423 /* GenderViewController.swift */,
+				38BED01820B866A10006F423 /* GenderViewController.xib */,
+				38BED01B20B866B70006F423 /* EducationViewController.swift */,
+				38BED01C20B866B70006F423 /* EducationViewController.xib */,
+			);
+			path = StatsVC;
+			sourceTree = "<group>";
+		};
 		794185911BE343A21E172BE2 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +182,7 @@
 		AA90E117208F73C700639262 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				38BED01220B866720006F423 /* StatsVC */,
 				AA90E118208F76B900639262 /* LoginViewController.swift */,
 				AA90E11A208F7F2F00639262 /* RegisterViewController.swift */,
 				AA88F1D2209538B200B34365 /* EventsViewController.swift */,
@@ -164,6 +192,7 @@
 				F862C3EF20B75D7D0064828C /* NewsAdderViewController.swift */,
 				AA7A3F2320B7510C00FCD74D /* InfoViewController.swift */,
 				7811074920B79177004B41C2 /* ProfileTableViewController.swift */,
+				38BED01F20B8694F0006F423 /* EventStatsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -238,7 +267,10 @@
 			files = (
 				AA90E10E208F732900639262 /* LaunchScreen.storyboard in Resources */,
 				AA90E10B208F732900639262 /* Assets.xcassets in Resources */,
+				38BED01620B866910006F423 /* AgeViewController.xib in Resources */,
+				38BED01A20B866A10006F423 /* GenderViewController.xib in Resources */,
 				AA90E109208F732800639262 /* Main.storyboard in Resources */,
+				38BED01E20B866B70006F423 /* EducationViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,12 +285,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ConPro/Pods-ConPro-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 			);
@@ -293,9 +327,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA90E11B208F7F2F00639262 /* RegisterViewController.swift in Sources */,
+				38BED02020B8694F0006F423 /* EventStatsViewController.swift in Sources */,
 				AA88F1D9209C4EC300B34365 /* Event.swift in Sources */,
 				F8A023EE20B5B19B00E5A96A /* NewsTableViewCell.swift in Sources */,
 				AAB6B4232094B862008C4CB2 /* Token.swift in Sources */,
+				38BED01920B866A10006F423 /* GenderViewController.swift in Sources */,
+				38BED01520B866910006F423 /* AgeViewController.swift in Sources */,
 				F862C3F020B75D7D0064828C /* NewsAdderViewController.swift in Sources */,
 				AA7A3F2420B7510C00FCD74D /* InfoViewController.swift in Sources */,
 				7811074A20B79177004B41C2 /* ProfileTableViewController.swift in Sources */,
@@ -308,6 +345,7 @@
 				AA90E104208F732800639262 /* AppDelegate.swift in Sources */,
 				94AD3DAF20B59A2C00C79B79 /* EventAdderViewController.swift in Sources */,
 				AA84272920B0B504009C853C /* User.swift in Sources */,
+				38BED01D20B866B70006F423 /* EducationViewController.swift in Sources */,
 				AA88F1D3209538B200B34365 /* EventsViewController.swift in Sources */,
 				AA84272B20B0CE04009C853C /* HardcodedThings.swift in Sources */,
 				AA47E79620AC41DA00F4F1DF /* Extensions.swift in Sources */,

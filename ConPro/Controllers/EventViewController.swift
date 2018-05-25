@@ -24,7 +24,7 @@ class EventViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if menu[indexPath.row][1] as! String == "News Feed" || menu[indexPath.row][1] as! String == "Info"{
+        if menu[indexPath.row][1] as! String == "News Feed" || menu[indexPath.row][1] as! String == "Info"||menu[indexPath.row][1] as! String == "Statistics"{
             performSegue(withIdentifier: menu[indexPath.row][1] as! String, sender: self)
         }// after every window is created if statement can be deleted
     }
@@ -38,6 +38,13 @@ class EventViewController: UIViewController, UICollectionViewDelegate, UICollect
         case "Info":
             let vc = segue.destination as! InfoViewController
             vc.selectedEvent = selectedEvent
+        case "Statistics":
+            if #available(iOS 11.0, *) {
+                let vc = segue.destination as! EventStatsViewController
+                vc.selectedEvent = selectedEvent
+            } else {
+                // Fallback on earlier versions
+            }
         default:
             break
         }
