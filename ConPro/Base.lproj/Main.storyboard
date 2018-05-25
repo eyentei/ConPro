@@ -1774,7 +1774,7 @@
         <!--Event Stats View Controller-->
         <scene sceneID="pig-KC-JpE">
             <objects>
-                <viewController id="vfw-ZC-L14" customClass="EventStatsViewController" customModule="EventStatistics" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vfw-ZC-L14" customClass="EventStatsViewController" customModule="ConPro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yde-8p-gih">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
