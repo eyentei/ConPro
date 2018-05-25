@@ -9,12 +9,8 @@ class NewsViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var newsTableView: UITableView!
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return (self.selectedEvent?.news.count)!
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return (self.selectedEvent?.news.count)!
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -47,10 +43,11 @@ class NewsViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         
-        if segue.identifier == "segueToNewsAdder" {
+        if segue.identifier == "segueToAddNews" {
             
             let vc = segue.destination as! NewsAdderViewController
             vc.selectedEvent = selectedEvent
+            vc.newsViewController = self
             
         }
     }
@@ -65,14 +62,8 @@ class NewsViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
         self.navigationItem.title = "News"
-        
-        
-        
-        // wrap by checking if user is organizer
-        //if true {
-        //    addButton.isHidden = false
-        //}
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
