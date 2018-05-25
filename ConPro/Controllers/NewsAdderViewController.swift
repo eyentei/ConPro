@@ -33,6 +33,7 @@ class NewsAdderViewController: UIViewController, UITextViewDelegate {
         newsMessage.becomeFirstResponder()
         newsMessage.delegate = self
         symbolsLeft.text = "230"
+        publishButton.isEnabled = false
         
     }
     
@@ -51,6 +52,8 @@ class NewsAdderViewController: UIViewController, UITextViewDelegate {
         let updatedText = currentText.replacingCharacters(in: range, with: text)
         
         symbolsLeft.text = String(230 - updatedText.count + 1)
+        
+        publishButton.isEnabled = updatedText.count != 0
         
         return updatedText.count <= 230
     }
