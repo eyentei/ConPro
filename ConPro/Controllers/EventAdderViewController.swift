@@ -76,9 +76,26 @@ class EventAdderViewController: UIViewController, UIImagePickerControllerDelegat
     
     @IBAction func CreateEvent(_ sender: Any) {
         //waiting for api
-        let newEvent = Event(id: addedEvents.count, name: TitleTextField.text!, image: ImageView.image!.data!, timeStart: Date(date: DateStart.text!)!, timeEnd: Date(date: DateFinish.text!)!, place: PlaceTextField.text!, organizer: u1, eventCategory: "", eventDescription: DescriptionTextView.text)
-        addedEvents.append(newEvent)
-        self.performSegue(withIdentifier: "segueToEvents", sender: self)
+        var newEvent = Event()
+        if(!(TitleTextField.text?.isEmpty)! && !(PlaceTextField.text?.isEmpty)! && !(DateStart.text?.isEmpty)! && !(DateFinish.text?.isEmpty)!){
+            newEvent = Event(id: addedEvents.count, name: TitleTextField.text!, place: PlaceTextField.text!, timeStart: Date(date: DateStart.text!), timeEnd: Date(date: DateFinish.text!))
+        
+            if let image = ImageView.image?.data {
+                newEvent.image = image
+            }
+            if let descr = DescriptionTextView.text {
+                newEvent.eventDescription = descr
+            }
+            newEvent.organizer = u1
+            addedEvents.append(newEvent)
+            navigationController?.popViewController(animated: true)
+        }
+        else{
+            TitleTextField.backgroundColor = UIColor.red
+            PlaceTextField.backgroundColor = UIColor.red
+            DateStart.backgroundColor = UIColor.red
+            DateFinish.backgroundColor = UIColor.red
+        }
     }
     
     
