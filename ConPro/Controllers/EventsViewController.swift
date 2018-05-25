@@ -3,6 +3,7 @@ import Moya
 
 class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     var appDelegate = UIApplication.shared.delegate as? AppDelegate
+    
 
     let sections = ["Current & future events", "Past events"]
     var pastEvents: [Event] = []

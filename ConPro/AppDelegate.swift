@@ -1,6 +1,5 @@
 import UIKit
 import Moya
-import CoreData
 import UserNotifications
 
 @UIApplicationMain
@@ -31,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Define Actions
         let firstAction = UNNotificationAction(identifier: "Nothingchange", title: "We're still on for tomorrow", options: [])
         let secondAction = UNNotificationAction(identifier: "LittleChange", title: "I'am late", options: [])
-        let thirdAction = UNNotificationAction(identifier: "Canceling", title: "I'm not coming", options: [])
+        let thirdAction = UNNotificationAction(identifier: "Cancelling", title: "I'm not coming", options: [])
         
         //Add action to a eventCategory
         let category = UNNotificationCategory(identifier: "eventCategory", actions: [firstAction, secondAction, thirdAction], intentIdentifiers: [], options: [])
@@ -42,6 +41,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
+    
+    //func logout () {
+      //  UserDefaults.standard.removeObject(forKey: "token")
+   // }
     
     func sendNotification () {
         let notification = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
