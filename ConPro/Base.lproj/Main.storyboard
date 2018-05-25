@@ -1403,9 +1403,6 @@
                                 <rect key="frame" x="295" y="60" width="64" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Publish"/>
-                                <connections>
-                                    <action selector="addNews:" destination="dg9-8z-dFo" eventType="touchUpInside" id="415-Sx-EUN"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's new?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oi5-w3-quB">
                                 <rect key="frame" x="126" y="63" width="122" height="28"/>
