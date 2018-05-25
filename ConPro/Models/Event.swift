@@ -11,6 +11,14 @@ class Event: NSObject, Codable {
     var eventCategory: String?
     var eventDescription: String?
     var news = [News]()
+    override init(){}
+    init(id: Int, name: String, place: String, timeStart: Date?, timeEnd: Date?){
+        self.id = id
+        self.name = name
+        self.place = place
+        self.timeStart = timeStart
+        self.timeEnd = timeEnd
+    }
     init(id: Int, name: String, image: Data, timeStart: Date, timeEnd: Date, place: String, organizer: User, eventCategory: String, eventDescription: String?) {
         self.id = id
         self.name = name
