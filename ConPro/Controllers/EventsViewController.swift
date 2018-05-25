@@ -2,6 +2,7 @@ import UIKit
 import Moya
 
 class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+    var appDelegate = UIApplication.shared.delegate as? AppDelegate
 
     let sections = ["Current & future events", "Past events"]
     var pastEvents: [Event] = []
@@ -17,6 +18,11 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var switchLabel: UILabel!
     @IBOutlet weak var eventsSwitch: UISwitch!
     @IBOutlet weak var visitorOrganizerSC: UISegmentedControl!
+    
+    
+    @IBAction func startReminding(_ sender: Any) {
+        appDelegate?.sendNotification()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -317,6 +317,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <state key="normal" title="Remind me"/>
                             <connections>
+                                <action selector="startReminding:" destination="0RT-In-RAt" eventType="touchUpInside" id="kYn-Cp-8eo"/>
                                 <action selector="startReminding:" destination="MOH-Ub-ZJ6" eventType="touchUpInside" id="nvn-P8-r9q"/>
                             </connections>
                         </button>
@@ -467,7 +468,7 @@
         <!--Profile View Controller-->
         <scene sceneID="L3b-8s-Q5u">
             <objects>
-                <tableViewController id="MqX-5g-Epj" userLabel="Profile View Controller" sceneMemberID="viewController">
+                <tableViewController id="MqX-5g-Epj" userLabel="Profile View Controller" customClass="ProfileTableViewController" customModule="ConPro" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="CVW-V7-wCy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
