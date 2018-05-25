@@ -27,6 +27,10 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         loadEvents()
+        currentUser = u1
+        u1.eventsVisited = Array(addedEvents[1...3])
+        u1.eventsOrganized = addedEvents.filter({$0.organizer?.id == u1.id})
+        u2.eventsOrganized = addedEvents.filter({$0.organizer?.id == u2.id})
         /*let data = UserDefaults.standard.data(forKey: "token")
         let token = Token().fromJSON(json: data!).authToken!
         let authPlugin = AccessTokenPlugin(tokenClosure: token)
@@ -162,16 +166,11 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewWillAppear(_ animated: Bool) {
         
-        currentUser = u1
         allEvents = addedEvents
-        u1.eventsVisited = Array(addedEvents[1...3])
-        u1.eventsOrganized = addedEvents.filter({$0.organizer?.id == u1.id})
-        u2.eventsOrganized = addedEvents.filter({$0.organizer?.id == u2.id})
         userName.text = currentUser.name
         userImage.image = currentUser.image?.image
         organized = currentUser.eventsOrganized
         visited = currentUser.eventsVisited
-        allEvents = addedEvents
         visitorOrganizerSC.selectedSegmentIndex = 0
         visitorOrganizerSC.sendActions(for: UIControlEvents.valueChanged)
         checkStatus()

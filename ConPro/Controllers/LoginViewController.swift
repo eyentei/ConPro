@@ -36,7 +36,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     let error = error as? MoyaError
                     
                     if let code = error?.response?.statusCode {
-                        self.statusLabel.text = String(code)
+                        if code == 404 {
+                            self.statusLabel.text = "Wrong email or password"
+                        } else {
+                            self.statusLabel.text = String(code)
+                        }
                     }
                 }
                 
