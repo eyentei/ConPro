@@ -258,17 +258,6 @@
                                     <outlet property="delegate" destination="0RT-In-RAt" id="yga-pf-bT5"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xxd-GB-DSL">
-                                <rect key="frame" x="115" y="71" width="157" height="38"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                <state key="normal" title="Open profile menu">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <segue destination="MqX-5g-Epj" kind="show" id="cv5-W4-w8m"/>
-                                </connections>
-                            </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="N82-F0-pYY">
                                 <rect key="frame" x="10" y="157" width="51" height="31"/>
                                 <color key="onTintColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -316,6 +305,21 @@
                         <viewLayoutGuide key="safeArea" id="Dst-2R-6tr"/>
                     </view>
                     <navigationItem key="navigationItem" id="WfU-8a-rqq">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" title="Profile menu" id="tat-n9-8um">
+                            <connections>
+                                <segue destination="MqX-5g-Epj" kind="show" id="wpd-Cl-DRh"/>
+                            </connections>
+                        </barButtonItem>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SNJ-0o-kVM">
+                            <rect key="frame" x="144.5" y="5.5" width="86" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="Remind me"/>
+                            <connections>
+                                <action selector="startReminding:" destination="MOH-Ub-ZJ6" eventType="touchUpInside" id="nvn-P8-r9q"/>
+                            </connections>
+                        </button>
                         <barButtonItem key="rightBarButtonItem" title="New event" id="5DG-Kn-T1x">
                             <connections>
                                 <segue destination="4Fh-Xq-eMv" kind="show" id="cGo-Nv-or5"/>
@@ -333,6 +337,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Asb-Jj-Cs9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="MOH-Ub-ZJ6" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2201.25" y="219.71830985915494"/>
         </scene>
