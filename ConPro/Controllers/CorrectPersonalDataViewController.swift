@@ -28,7 +28,17 @@ class CorrectPersonalDataViewController: UITableViewController, UITextFieldDeleg
     @IBOutlet weak var Education: UITextField!
     @IBOutlet weak var Adress: UILabel!
     
+    @IBAction func ChangeUserName(_ sender: Any) {
+        if firstName.text != "" {
+            performSegue(withIdentifier: "EventsViewController", sender: self)
+            //print("OK")
+        }
+    }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        var eventsController = segue.destination as! EventsViewController
+        eventsController.myString = firstName.text!
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         if let x1 = UserDefaults.standard.object(forKey: "firstName") as? String {
@@ -52,6 +62,8 @@ class CorrectPersonalDataViewController: UITableViewController, UITextFieldDeleg
         //if let z2 = UserDefaults.standard.object(forKey: "presentpost") as? String {
             //presentpost.text = z2
         //}
+        
+        
         
     }
     
