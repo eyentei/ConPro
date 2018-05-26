@@ -15,7 +15,9 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var eventsTableView: UITableView!
     @IBOutlet weak var userImage: UIImageView!
+    
     @IBOutlet weak var userName: UILabel!
+    var myString = String()
     @IBOutlet weak var switchLabel: UILabel!
     @IBOutlet weak var eventsSwitch: UISwitch!
     @IBOutlet weak var visitorOrganizerSC: UISegmentedControl!
@@ -25,8 +27,11 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         appDelegate?.sendNotification()
     }
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        //userName.text = myString
         loadEvents()
         currentUser = u1
         u1.eventsVisited = Array(addedEvents[1...3])
@@ -175,5 +180,6 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         visitorOrganizerSC.selectedSegmentIndex = 0
         visitorOrganizerSC.sendActions(for: UIControlEvents.valueChanged)
         checkStatus()
+        userName.text = myString
     }
 }
