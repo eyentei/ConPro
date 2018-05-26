@@ -38,6 +38,9 @@ class EventViewController: UIViewController, UICollectionViewDelegate, UICollect
         case "Info":
             let vc = segue.destination as! InfoViewController
             vc.selectedEvent = selectedEvent
+        case "EventEdit":
+            let vc = segue.destination as! EventEditViewController
+            vc.selectedEvent = selectedEvent
         case "Statistics":
             if #available(iOS 11.0, *) {
                 let vc = segue.destination as! EventStatsViewController
@@ -64,7 +67,7 @@ class EventViewController: UIViewController, UICollectionViewDelegate, UICollect
 
     }
 
-    @IBAction func subscribeOrUnsubscribe(_ sender: UIBarButtonItem) {
+    @IBAction func subscribeOrUnsubscribe( _ sender: UIBarButtonItem) {
         switch sender.title {
         case "Subscribe":
             currentUser?.eventsVisited.append(selectedEvent!)
@@ -72,8 +75,9 @@ class EventViewController: UIViewController, UICollectionViewDelegate, UICollect
         case "Unsubscribe":
             currentUser?.eventsVisited = (currentUser?.eventsVisited.filter({$0.id != selectedEvent?.id}))!
             sender.title = "Subscribe"
-        case "Edit": break
+        case "Edit":
             //segue to event edit screen
+            performSegue(withIdentifier: "EventEdit", sender: self)
         default:
             break
         }

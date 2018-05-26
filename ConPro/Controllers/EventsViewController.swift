@@ -17,7 +17,6 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var userImage: UIImageView!
     
     @IBOutlet weak var userName: UILabel!
-    var myString = String()
     @IBOutlet weak var switchLabel: UILabel!
     @IBOutlet weak var eventsSwitch: UISwitch!
     @IBOutlet weak var visitorOrganizerSC: UISegmentedControl!
@@ -172,6 +171,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewWillAppear(_ animated: Bool) {
         
+        currentUser = u1
         allEvents = addedEvents
         userName.text = currentUser.name
         userImage.image = currentUser.image?.image
@@ -180,6 +180,5 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         visitorOrganizerSC.selectedSegmentIndex = 0
         visitorOrganizerSC.sendActions(for: UIControlEvents.valueChanged)
         checkStatus()
-        userName.text = myString
     }
 }

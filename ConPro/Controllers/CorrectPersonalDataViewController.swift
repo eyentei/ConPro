@@ -32,14 +32,15 @@ class CorrectPersonalDataViewController: UITableViewController, UITextFieldDeleg
         if firstName.text != "" {
             //performSegue(withIdentifier: "EventsViewController", sender: self)
             //print("OK")
+            u1.name = firstName.text
             navigationController?.popViewController(animated: true)
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         var eventsController = segue.destination as! EventsViewController
         eventsController.myString = firstName.text!
-    }
+    }*/
     
     override func viewDidAppear(_ animated: Bool) {
         if let x1 = UserDefaults.standard.object(forKey: "firstName") as? String {
