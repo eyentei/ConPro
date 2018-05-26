@@ -12,7 +12,20 @@ import UIKit
 class CorrectPersonalDataViewController: UITableViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:))))
     }
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer) {
+        if sender.state == .ended {
+            // Do your thang here!
+            self.view.endEditing(true)
+            for textField in self.view.subviews where textField is UITextField {
+                textField.resignFirstResponder()
+            }
+        }
+        sender.cancelsTouchesInView = false
+    }
+    
     override func didReceiveMemoryWarning() {
         didReceiveMemoryWarning()
     }
@@ -66,6 +79,13 @@ class CorrectPersonalDataViewController: UITableViewController, UITextFieldDeleg
         
         
         
+    }
+    
+    
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {

@@ -91,6 +91,7 @@ class EventAdderViewController: UIViewController, UIImagePickerControllerDelegat
                 newEvent.eventDescription = descr
             }
             newEvent.organizer = u1
+            u1.eventsOrganized.append(newEvent)
             addedEvents.append(newEvent)
             navigationController?.popViewController(animated: true)
         }
