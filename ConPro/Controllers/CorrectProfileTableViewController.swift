@@ -11,16 +11,13 @@ import UIKit
 
 class CorrectProfileTableViewController: UITableViewController {
     //let appDelegate = UIApplication.shared.delegate as? AppDelegate
-    @IBAction func signoutAction(_ sender: Any) {
-        print("yes")
-        //appDelegate?.logout()
-        //appDelegate?.sendNotification()
+    @IBAction func signoutAction(_ sender: UIButton) {
         
-        //let signInPage = self.storyboard?.instantiateInitialViewController() as! LoginViewController
-        UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
-        //UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
-
-        //let appDelegate?.window??.rootViewController = signInPage
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        self.present(controller, animated: true, completion: { () -> Void in
+        })
+        UserDefaults.standard.removeObject(forKey: "token")
     }
     
     @IBOutlet weak var notificationOutlet: UISwitch!

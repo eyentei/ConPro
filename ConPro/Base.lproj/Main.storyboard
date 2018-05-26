@@ -733,7 +733,7 @@
                                                     </state>
                                                     <connections>
                                                         <action selector="logoutAction:" destination="9lA-Xf-w88" eventType="touchUpInside" id="f6w-hL-gmU"/>
-                                                        <action selector="signoutAction:" destination="I9m-K8-LAC" eventType="touchUpInside" id="zVl-qk-Puu"/>
+                                                        <action selector="signoutAction:" destination="I9m-K8-LAC" eventType="touchUpInside" id="FJa-Ys-Txm"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -744,9 +744,6 @@
                                                 <constraint firstItem="3tU-n8-Gee" firstAttribute="leading" secondItem="tMu-Jr-b4b" secondAttribute="leading" constant="20" id="uJh-ZS-O8I"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="BYZ-38-t0r" kind="show" id="CUl-jn-Y5S"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="znh-5k-uky">
                                         <rect key="frame" x="0.0" y="187.33333333333334" width="414" height="44"/>
