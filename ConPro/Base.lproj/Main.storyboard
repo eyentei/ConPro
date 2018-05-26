@@ -972,6 +972,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="X7Q-jm-rja" id="xbn-NS-afk"/>
+                                                    </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L6v-bj-Xx5">
                                                     <rect key="frame" x="20" y="0.0" width="79" height="44"/>
@@ -1016,6 +1019,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" textContentType="name"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="X7Q-jm-rja" id="dqW-6g-ASp"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -1090,6 +1096,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="X7Q-jm-rja" id="ZDt-wo-kZJ"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -1129,6 +1138,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" textContentType="email"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="X7Q-jm-rja" id="Lxa-52-tDo"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -1164,6 +1176,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" textContentType="tel"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="X7Q-jm-rja" id="JEK-x6-UP6"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -1328,8 +1343,12 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="Adress" destination="kBm-Kn-2cr" id="5A7-pr-rgk"/>
                         <outlet property="Age" destination="e4u-4w-KWr" id="fD3-Cm-uaI"/>
+                        <outlet property="Education" destination="9V5-Ad-Wuy" id="dgZ-ON-n9N"/>
+                        <outlet property="company" destination="Zye-im-yoa" id="WmS-13-U3j"/>
                         <outlet property="firstName" destination="JOb-nO-X6O" id="NeK-Dt-d2p"/>
+                        <outlet property="presentpost" destination="biy-aS-QL4" id="PV4-wh-KKj"/>
                         <outlet property="secondName" destination="Phy-x5-O20" id="MZ9-Vl-Jx4"/>
                     </connections>
                 </tableViewController>

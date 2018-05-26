@@ -29,6 +29,10 @@ class CorrectProfileTableViewController: UITableViewController {
     @IBAction func notificationEnabled(_ sender: Any) {
     }
     
+    override func didReceiveMemoryWarning() {
+        didReceiveMemoryWarning()
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
