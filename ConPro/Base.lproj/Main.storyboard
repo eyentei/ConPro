@@ -659,10 +659,10 @@
             </objects>
             <point key="canvasLocation" x="2198.5507246376815" y="1189.4021739130435"/>
         </scene>
-        <!--Profile View Controller-->
+        <!--Correct Profile View Controller-->
         <scene sceneID="iUV-lN-Iwv">
             <objects>
-                <tableViewController id="I9m-K8-LAC" userLabel="Profile View Controller" sceneMemberID="viewController">
+                <tableViewController id="I9m-K8-LAC" userLabel="Correct Profile View Controller" customClass="CorrectProfileTableViewController" customModule="ConPro" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="mVs-XV-Pbn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -941,7 +941,7 @@
         <!--Personal Data View Controller-->
         <scene sceneID="fda-Yk-mYN">
             <objects>
-                <tableViewController id="X7Q-jm-rja" userLabel="Personal Data View Controller" sceneMemberID="viewController">
+                <tableViewController id="X7Q-jm-rja" userLabel="Personal Data View Controller" customClass="CorrectPersonalDataViewController" customModule="ConPro" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="W1l-Ll-kxC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
