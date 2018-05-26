@@ -6,6 +6,7 @@ class EventAdderViewController: UIViewController, UIImagePickerControllerDelegat
         super.viewDidLoad()
         dateStartSelection()
         dateFinishSelection()
+        
     }
     
     @IBOutlet weak var ImageView: UIImageView!
@@ -70,6 +71,9 @@ class EventAdderViewController: UIViewController, UIImagePickerControllerDelegat
         self.view.endEditing(true)
     }
     
+    
+    
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var TitleTextField: UITextField!
     @IBOutlet weak var PlaceTextField: UITextField!
     @IBOutlet weak var DescriptionTextView: UITextView!
