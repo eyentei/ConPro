@@ -30,8 +30,9 @@ class CorrectPersonalDataViewController: UITableViewController, UITextFieldDeleg
     
     @IBAction func ChangeUserName(_ sender: Any) {
         if firstName.text != "" {
-            performSegue(withIdentifier: "EventsViewController", sender: self)
+            //performSegue(withIdentifier: "EventsViewController", sender: self)
             //print("OK")
+            navigationController?.popViewController(animated: true)
         }
     }
     
