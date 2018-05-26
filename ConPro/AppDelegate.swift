@@ -1,12 +1,15 @@
 import UIKit
 import Moya
 import UserNotifications
+import Firebase
+import IQKeyboardManagerSwift
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var ref : DatabaseReference!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         provider = MoyaProvider<APIService>()
@@ -37,6 +40,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Add the eventCategory to Notification Framework
         UNUserNotificationCenter.current().setNotificationCategories([category])
+        
+        //Firebase configuration
+        FirebaseApp.configure()
+        ref = Database.database().reference()
+        
+        //Keyboard manager
+        IQKeyboardManager.shared.enable = true
         
         
         return true

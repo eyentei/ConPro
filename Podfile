@@ -6,4 +6,9 @@ target 'ConPro' do
    pod 'Moya', '~> 11.0' 
    pod 'Alamofire', '~> 4.7'
    pod 'Charts'
+   pod 'Firebase'
+   pod 'Firebase/Auth'
+   pod 'Firebase/Database'
+   pod 'Firebase/Storage'
+   pod 'IQKeyboardManagerSwift'
 end

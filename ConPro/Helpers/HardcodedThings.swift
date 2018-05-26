@@ -1,8 +1,8 @@
 import Foundation
 import UIKit
 
-var u1 = User(id: 1, name: "John Smith", image: #imageLiteral(resourceName: "cat").data!)
-var u2 = User(id: 2, name: "Asd", image: #imageLiteral(resourceName: "cat").data!)
+var u1 = User(id: 1, name: "John Smith", image: #imageLiteral(resourceName: "cat").data!, email: "test1@gmail.com", password: "qwerty123")
+var u2 = User(id: 2, name: "Asd", image: #imageLiteral(resourceName: "cat").data!, email: "test2@gmail.com", password: "qwerty123")
 
 var n1 = News(id: 1, name: "", message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.")
 
