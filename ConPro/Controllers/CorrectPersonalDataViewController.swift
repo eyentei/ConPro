@@ -8,8 +8,26 @@
 
 import Foundation
 import UIKit
+
 class CorrectPersonalDataViewController: UITableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    override func didReceiveMemoryWarning() {
+        didReceiveMemoryWarning()
+    }
+    
+    @IBOutlet weak var firstName: UITextField!
+    @IBOutlet weak var secondName: UITextField!
+    @IBOutlet weak var Age: UITextField!
+    
+    override func viewDidAppear(_ animated: Bool) {
+        //if let firstName = UserDefaults.standard.object(forKey: "myName") as? String {
+        //    secondName. = firstName
+        //}
+        
+    }
+    
+    
+    
 }
