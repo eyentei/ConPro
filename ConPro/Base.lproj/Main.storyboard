@@ -1031,20 +1031,28 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add_photo" translatesAutoresizingMaskIntoConstraints="NO" id="q2f-Ym-5UE">
-                                                    <rect key="frame" x="279" y="6" width="115" height="115"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z2m-6w-4hX">
+                                                    <rect key="frame" x="271.33333333333331" y="2" width="122.66666666666669" height="122.66666666666667"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="115" id="79b-9W-hvx"/>
-                                                        <constraint firstAttribute="width" constant="115" id="SIi-Ji-4Kb"/>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="115" id="Ufz-YX-pAL"/>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="115" id="cgH-UP-DCi"/>
+                                                        <constraint firstAttribute="width" secondItem="Z2m-6w-4hX" secondAttribute="height" multiplier="1:1" id="sd6-4k-EnD"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button" image="add_photo"/>
+                                                </button>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Voo-Mg-ZY8">
+                                                    <rect key="frame" x="186.33333333333334" y="31" width="65" height="65"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="Voo-Mg-ZY8" secondAttribute="height" multiplier="1:1" id="nqJ-Me-RIj"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="q2f-Ym-5UE" secondAttribute="trailing" constant="20" id="89K-UM-q9H"/>
-                                                <constraint firstItem="q2f-Ym-5UE" firstAttribute="centerY" secondItem="PVR-gt-U7C" secondAttribute="centerY" id="9HV-gp-MXU"/>
-                                                <constraint firstAttribute="trailing" secondItem="q2f-Ym-5UE" secondAttribute="trailing" constant="20" id="JNj-vU-Adl"/>
+                                                <constraint firstItem="Z2m-6w-4hX" firstAttribute="top" secondItem="PVR-gt-U7C" secondAttribute="top" constant="2" id="0xr-8F-GKX"/>
+                                                <constraint firstItem="Z2m-6w-4hX" firstAttribute="centerY" secondItem="PVR-gt-U7C" secondAttribute="centerY" id="aZP-ZY-gi7"/>
+                                                <constraint firstItem="Z2m-6w-4hX" firstAttribute="leading" secondItem="Voo-Mg-ZY8" secondAttribute="trailing" constant="20" id="hFJ-2E-pWs"/>
+                                                <constraint firstAttribute="trailing" secondItem="Z2m-6w-4hX" secondAttribute="trailing" constant="20" id="lap-3h-2Mt"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Voo-Mg-ZY8" secondAttribute="bottom" constant="20" id="nP4-hH-kpJ"/>
+                                                <constraint firstItem="Voo-Mg-ZY8" firstAttribute="top" secondItem="PVR-gt-U7C" secondAttribute="topMargin" constant="20" id="vfK-4g-r6z"/>
+                                                <constraint firstAttribute="bottom" secondItem="Z2m-6w-4hX" secondAttribute="bottom" constant="2" id="xOg-Xe-G5u"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1312,7 +1320,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZPS-ee-dzt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3938" y="983"/>
+            <point key="canvasLocation" x="3937.68115942029" y="982.33695652173924"/>
         </scene>
         <!--Info View Controller-->
         <scene sceneID="MAe-8R-Mky">

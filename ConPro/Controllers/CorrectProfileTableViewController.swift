@@ -17,6 +17,9 @@ class CorrectProfileTableViewController: UITableViewController {
         appDelegate?.sendNotification()
         
         let signInPage = self.storyboard?.instantiateInitialViewController() as! LoginViewController
+        
+//UIApplication.sharedApplication().keyWindow?.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
+        //UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
 
         //let appDelegate?.window??.rootViewController = signInPage
     }

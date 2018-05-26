@@ -15,7 +15,6 @@
 		38BED01E20B866B70006F423 /* EducationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38BED01C20B866B70006F423 /* EducationViewController.xib */; };
 		38BED02020B8694F0006F423 /* EventStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BED01F20B8694F0006F423 /* EventStatsViewController.swift */; };
 		38BED03520B8C5330006F423 /* UserStatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BED03420B8C5330006F423 /* UserStatisticsViewController.swift */; };
-		7811074A20B79177004B41C2 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7811074920B79177004B41C2 /* ProfileTableViewController.swift */; };
 		7891F9CE20B90B880096326C /* CorrectProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7891F9CD20B90B880096326C /* CorrectProfileTableViewController.swift */; };
 		7891F9D020B90E670096326C /* CorrectPersonalDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7891F9CF20B90E670096326C /* CorrectPersonalDataViewController.swift */; };
 		94AD3DAF20B59A2C00C79B79 /* EventAdderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AD3DAE20B59A2C00C79B79 /* EventAdderViewController.swift */; };
@@ -53,7 +52,6 @@
 		38BED01C20B866B70006F423 /* EducationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EducationViewController.xib; sourceTree = "<group>"; };
 		38BED01F20B8694F0006F423 /* EventStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStatsViewController.swift; sourceTree = "<group>"; };
 		38BED03420B8C5330006F423 /* UserStatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStatisticsViewController.swift; sourceTree = "<group>"; };
-		7811074920B79177004B41C2 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		7891F9CD20B90B880096326C /* CorrectProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectProfileTableViewController.swift; sourceTree = "<group>"; };
 		7891F9CF20B90E670096326C /* CorrectPersonalDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectPersonalDataViewController.swift; sourceTree = "<group>"; };
 		7CA5C7B39B96C88B4CF553D9 /* Pods_ConPro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ConPro.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -199,7 +197,6 @@
 				F862C3EF20B75D7D0064828C /* NewsAdderViewController.swift */,
 				AA7A3F2320B7510C00FCD74D /* InfoViewController.swift */,
 				7891F9CD20B90B880096326C /* CorrectProfileTableViewController.swift */,
-				7811074920B79177004B41C2 /* ProfileTableViewController.swift */,
 				38BED01F20B8694F0006F423 /* EventStatsViewController.swift */,
 				7891F9CF20B90E670096326C /* CorrectPersonalDataViewController.swift */,
 			);
@@ -345,7 +342,6 @@
 				38BED01520B866910006F423 /* AgeViewController.swift in Sources */,
 				F862C3F020B75D7D0064828C /* NewsAdderViewController.swift in Sources */,
 				AA7A3F2420B7510C00FCD74D /* InfoViewController.swift in Sources */,
-				7811074A20B79177004B41C2 /* ProfileTableViewController.swift in Sources */,
 				F8EE79CD20B4E10E003305E5 /* NewsViewController.swift in Sources */,
 				AA90E119208F76B900639262 /* LoginViewController.swift in Sources */,
 				F892545220B4D1E500E94C31 /* News.swift in Sources */,
