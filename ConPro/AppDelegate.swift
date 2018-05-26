@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if !authorized {
                 print ("App is useless because you did not allow notifications.")
             }
-            // let settings  = UNNotificationSettings(options: [.alert, .sound, .badge], categories: nil)
+            //let settings  = UNNotificationSettings(options: [.alert, .sound, .badge], categories: nil)
         }
         application.registerForRemoteNotifications()
         
@@ -42,9 +42,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    //func logout () {
-      //  UserDefaults.standard.removeObject(forKey: "token")
-   // }
+    func logout () {
+        UserDefaults.standard.removeObject(forKey: "token")
+    }
     
     func sendNotification () {
         let notification = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
