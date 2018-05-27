@@ -21,12 +21,12 @@ class EventStatsViewController: UIViewController {
     var ageView: HorizontalBarChartView!
     var genderView: PieChartView!
     var educationView: PieChartView!
-    var subs : Int?
-    var subsAgeValues : [Int] = [0,0,0,0]
+    var subs : Int = 100
+    var subsAgeValues : [Int] = [1,2,3,4]
     let subsAgeLabels = ["13-17","18-24","25-34","35-44+"]
-    var subsGenderValues : [Int] = [0,0]
+    var subsGenderValues : [Int] = [2,6]
     let subsGenderLabels = ["male","female"]
-    var subsEducationValues : [Int] = [0,0,0]
+    var subsEducationValues : [Int] = [3,6,8]
     let subsEducationLabels = ["kid","student","specialist"]
     
     
@@ -73,25 +73,26 @@ class EventStatsViewController: UIViewController {
         viewContainer.sizeToFit()
         ageView.translatesAutoresizingMaskIntoConstraints = false
         
-        let user1 = User()
-        user1.age = 13
-        user1.post = "student"
-        user1.gender = "male"
-        let user2 = User()
-        user2.age = 33
-        user2.post = "specialist"
-        user2.gender = "female"
-        let user3 = User()
-        user3.age = 27
-        user3.post = "student"
-        user3.gender = "male"
-        selectedEvent!.visitors.append(user1)
-        selectedEvent!.visitors.append(user2)
-        selectedEvent!.visitors.append(user3)
+//        let user1 = User()
+//        user1.age = 13
+//        user1.post = "student"
+//        user1.gender = "male"
+//        let user2 = User()
+//        user2.age = 33
+//        user2.post = "specialist"
+//        user2.gender = "female"
+//        let user3 = User()
+//        user3.age = 27
+//        user3.post = "student"
+//        user3.gender = "male"
+//        selectedEvent!.visitors.append(user1)
+//        selectedEvent!.visitors.append(user2)
+//        selectedEvent!.visitors.append(user3)
         
-        getSubsStats()
+//        getSubsStats()
         
-        totalSubsLabel.text = "Total Subs:\(subs ?? 0)"
+        
+        totalSubsLabel.text = "Total Subs:\(subs)"
         updateGenderChartView()
         self.genderView.alpha = 1
         self.ageView.alpha = 0
