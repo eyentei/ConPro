@@ -1,0 +1,1 @@
+var currentUser: User!

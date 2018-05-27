@@ -1,4 +1,5 @@
 import UIKit
+import RealmSwift
 
 class EventAdderViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -79,22 +80,20 @@ class EventAdderViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var DescriptionTextView: UITextView!
     
     @IBAction func CreateEvent(_ sender: Any) {
-        //waiting for api
-        var newEvent = Event()
+
         if(!(TitleTextField.text?.isEmpty)! && !(PlaceTextField.text?.isEmpty)! && !(DateStart.text?.isEmpty)! && !(DateFinish.text?.isEmpty)!){
-            newEvent = Event(id: addedEvents.count, name: TitleTextField.text!, place: PlaceTextField.text!, timeStart: Date(date: DateStart.text!), timeEnd: Date(date: DateFinish.text!))
-        
-            if let image = ImageView.image?.data {
-                newEvent.image = image
+            var image = #imageLiteral(resourceName: "kitty")
+            if let img = ImageView.image {
+                image = img.resized(toWidth: 100)!
             }
-            if let descr = DescriptionTextView.text {
-                newEvent.eventDescription = descr
+            
+            let realm = try! Realm()
+            try! realm.write {
+                let newEvent = Event(name: TitleTextField.text!, image: image.data!, timeStart: Date(date: DateStart.text!)!, timeEnd: Date(date: DateFinish.text!)!, place: PlaceTextField.text! , organizer: currentUser, eventDescription: DescriptionTextView.text )
+                
+                realm.add(newEvent)
+                navigationController?.popViewController(animated: true)
             }
-            newEvent.organizer = u1
-            u1.eventsOrganized.append(newEvent)
-            addedEvents.append(newEvent)
-            u1.eventsOrganized.append(newEvent)
-            navigationController?.popViewController(animated: true)
         }
         else{
             TitleTextField.backgroundColor = UIColor.red

@@ -1,5 +1,5 @@
 import UIKit
-import Moya
+import RealmSwift
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
@@ -21,36 +21,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 statusLabel.text = "Please fill in both fields"
                 return
         }
-        loadingIndicator.isHidden = false
-        provider.request(.login(email: email, password: password)) {
-            result in
-            switch result {
-            case let .success(moyaResponse):
-                do {
-                    let response = try moyaResponse.map(Response.self)
-                    UserDefaults.standard.set(response.data?.toJSON(), forKey:"token")
-
-                    self.performSegue(withIdentifier: "segueToEvents", sender: self)
-                }
-                catch {
-                    let error = error as? MoyaError
-                    
-                    if let code = error?.response?.statusCode {
-                        if code == 404 {
-                            self.statusLabel.text = "Wrong email or password"
-                        } else {
-                            self.statusLabel.text = String(code)
-                        }
-                    }
-                }
-                
-            case let .failure(error):
-                self.statusLabel.text = error.errorDescription
-            }
-            self.loadingIndicator.isHidden = true
+        
+        let realm = try! Realm()
+        if let user = realm.object(ofType: User.self, forPrimaryKey: email), user.password == password {
+            currentUser = user
+            UserDefaults.standard.set(user.email, forKey:"user")
+            self.performSegue(withIdentifier: "segueToEvents", sender: self)
+        } else {
+            statusLabel.text = "Wrong login or password"
         }
     }
-    
+
     @objc func editingChanged(_ textField: UITextField) {
         
         statusLabel.text = ""

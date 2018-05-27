@@ -1,9 +1,8 @@
-
+import RealmSwift
 import UIKit
 
 class NewsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var currentUser: User?
     var selectedEvent: Event?    
     
     @IBOutlet weak var addButton: UIBarButtonItem!
@@ -24,8 +23,8 @@ class NewsViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         cell.newsHeader.text = n!.name
         cell.newsMessage.text = n!.message
-        cell.eventIcon.image = n!.eventIcon!.image
-        cell.dateTime.text = dateFormatter.string(from: n!.dateTime!)
+        cell.eventIcon.image = n!.eventIcon.image
+        cell.dateTime.text = dateFormatter.string(from: n!.dateTime)
         
         return cell
         
@@ -48,7 +47,6 @@ class NewsViewController: UIViewController, UITableViewDelegate, UITableViewData
             let vc = segue.destination as! NewsAdderViewController
             vc.selectedEvent = selectedEvent
             vc.newsViewController = self
-            
         }
     }
     
@@ -56,14 +54,12 @@ class NewsViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         
         if selectedEvent?.organizer != currentUser {
-            
-            addButton.isEnabled = false
-            
+            addButton.title = ""
         }
         
         self.navigationItem.title = "News"
     }
-    
+ 
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

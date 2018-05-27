@@ -1,26 +1,24 @@
 import UIKit
+import RealmSwift
 
-class Event: NSObject, Codable {
-    var id: Int?
-    var name: String?
-    var image: Data?
-    var timeStart: Date?
-    var timeEnd: Date?
-    var place: String?
-    var organizer: User?
-    var eventCategory: String?
-    var eventDescription: String?
-    var news = [News]()
-    override init(){}
-    init(id: Int, name: String, place: String, timeStart: Date?, timeEnd: Date?){
-        self.id = id
-        self.name = name
-        self.place = place
-        self.timeStart = timeStart
-        self.timeEnd = timeEnd
+class Event: Object {
+    @objc dynamic var id = UUID().uuidString
+    @objc dynamic var name = ""
+    @objc dynamic var image = Data()
+    @objc dynamic var timeStart = Date()
+    @objc dynamic var timeEnd = Date()
+    @objc dynamic var place = ""
+    @objc dynamic var eventCategory = ""
+    @objc dynamic var eventDescription = ""
+    @objc dynamic var organizer: User?
+    var news = List<News>()
+    var visitors = List<User>()
+    
+    override class func primaryKey() -> String? {
+        return "id"
     }
-    init(id: Int, name: String, image: Data, timeStart: Date, timeEnd: Date, place: String, organizer: User, eventCategory: String, eventDescription: String?) {
-        self.id = id
+    convenience init(name: String, image: Data, timeStart: Date, timeEnd: Date, place: String, organizer: User, eventCategory: String = "", eventDescription: String = "") {
+        self.init()
         self.name = name
         self.image = image
         self.timeStart = timeStart

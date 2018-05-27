@@ -107,7 +107,7 @@ class UserStatisticsViewController: UIViewController {
             }
             if i==0
             {
-                categories[event.eventCategory!] = 1
+                categories[event.eventCategory] = 1
             }
         }
     }

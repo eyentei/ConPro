@@ -1,5 +1,5 @@
 import UIKit
-import Moya
+import RealmSwift
 import UserNotifications
 
 @UIApplicationMain
@@ -9,10 +9,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        provider = MoyaProvider<APIService>()
-        //UserDefaults.standard.removeObject(forKey: "token")
-        //UserDefaults.standard.removeObject(forKey: "events")
-        if UserDefaults.standard.data(forKey: "token") != nil {
+        //logout()
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        let realm = try! Realm()
+        if realm.objects(Event.self).isEmpty {
+            
+            let u1 = User(email: "a", password: "a")
+            u1.firstName = "John"
+            u1.lastName = "Smith"
+            u1.image = #imageLiteral(resourceName: "cat").data!
+            let u2 = User(email: "b", password: "b")
+
+            let addedEvents = [Event(name: "Comic-Con", image: #imageLiteral(resourceName: "cc").data!, timeStart: Date(date: "19-07-2018 10:00:00")!, timeEnd: Date(date: "21-07-2018 18:00:00")!, place: "San-Diego Convention Center" , organizer: u1, eventCategory: "Convention", eventDescription: "that's comic-con"),
+                               Event(name: "Cat Lovers Convention", image: #imageLiteral(resourceName: "kitty").data!, timeStart: Date(date: "10-03-2018 10:00:00")!, timeEnd: Date(date: "11-03-2018 18:00:00")!, place: "Convention Center" , organizer: u2, eventCategory: "Convention",eventDescription: "for those who just adores fluffy creatures"),
+                               Event(name: "CocoaHeads", image: #imageLiteral(resourceName: "ch").data!, timeStart: Date(date: "24-04-2018 10:00:00")!, timeEnd: Date(date: "25-04-2018 18:00:00")!, place: "Mail.ru Office" , organizer: u2, eventCategory: "Meetup",eventDescription: "swift lovers meetup"),
+                               Event(name: "The International 2018", image: #imageLiteral(resourceName: "ti").data!, timeStart: Date(date: "20-08-2018 11:00:00")!, timeEnd: Date(date: "25-08-2018 18:00:00")!, place: "Rogers Arena" , organizer: u2, eventCategory: "Contest",eventDescription: "The most popular dota competition"),
+                               Event(name: "event", image: #imageLiteral(resourceName: "kitty").data!, timeStart: Date(date: "20-05-2018 11:00:00")!, timeEnd: Date(date: "25-05-2018 18:00:00")!, place: "Conference Hall" , organizer: u2, eventCategory: "Other",eventDescription: "huh"),
+                               Event(name: "yet another event this time with long name", image: #imageLiteral(resourceName: "kitty").data!, timeStart: Date(date: "28-05-2018 11:00:00")!, timeEnd: Date(date: "30-05-2018 18:00:00")!, place: "ConfeHall" , organizer: u2, eventCategory: "Other",eventDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.")]
+            
+            addedEvents[1].visitors.append(u1)
+            addedEvents[2].visitors.append(u1)
+            addedEvents[3].visitors.append(u1)
+            
+            try! realm.write {
+                realm.add(u1)
+                realm.add(u2)
+                realm.add(addedEvents)
+                
+            }
+        }
+        if UserDefaults.standard.string(forKey: "user") != nil {
             let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "RootNavigationControllerID")
             self.window?.rootViewController = vc
         }
@@ -42,8 +68,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    
     func logout () {
-        UserDefaults.standard.removeObject(forKey: "token")
+        UserDefaults.standard.removeObject(forKey: "user")
     }
     
     func sendNotification () {

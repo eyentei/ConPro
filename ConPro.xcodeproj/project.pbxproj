@@ -22,8 +22,8 @@
 		AA187C212094895600D29D5E /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA187C202094895600D29D5E /* APIService.swift */; };
 		AA47E79620AC41DA00F4F1DF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA47E79520AC41DA00F4F1DF /* Extensions.swift */; };
 		AA7A3F2420B7510C00FCD74D /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7A3F2320B7510C00FCD74D /* InfoViewController.swift */; };
+		AA7A3F2620B9E40A00FCD74D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7A3F2520B9E40A00FCD74D /* Settings.swift */; };
 		AA84272920B0B504009C853C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84272820B0B504009C853C /* User.swift */; };
-		AA84272B20B0CE04009C853C /* HardcodedThings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA84272A20B0CE04009C853C /* HardcodedThings.swift */; };
 		AA88F1D3209538B200B34365 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA88F1D2209538B200B34365 /* EventsViewController.swift */; };
 		AA88F1D5209BC71100B34365 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA88F1D4209BC71100B34365 /* EventTableViewCell.swift */; };
 		AA88F1D7209C4E7E00B34365 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA88F1D6209C4E7E00B34365 /* EventViewController.swift */; };
@@ -63,8 +63,8 @@
 		AA187C202094895600D29D5E /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		AA47E79520AC41DA00F4F1DF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		AA7A3F2320B7510C00FCD74D /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		AA7A3F2520B9E40A00FCD74D /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		AA84272820B0B504009C853C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		AA84272A20B0CE04009C853C /* HardcodedThings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardcodedThings.swift; sourceTree = "<group>"; };
 		AA88F1D2209538B200B34365 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		AA88F1D4209BC71100B34365 /* EventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		AA88F1D6209C4E7E00B34365 /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
@@ -124,7 +124,7 @@
 			children = (
 				AA187C202094895600D29D5E /* APIService.swift */,
 				AA47E79520AC41DA00F4F1DF /* Extensions.swift */,
-				AA84272A20B0CE04009C853C /* HardcodedThings.swift */,
+				AA7A3F2520B9E40A00FCD74D /* Settings.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -296,6 +296,8 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -303,6 +305,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -353,13 +357,13 @@
 				AA88F1D5209BC71100B34365 /* EventTableViewCell.swift in Sources */,
 				7891F9D020B90E670096326C /* CorrectPersonalDataViewController.swift in Sources */,
 				AA88F1D7209C4E7E00B34365 /* EventViewController.swift in Sources */,
+				AA7A3F2620B9E40A00FCD74D /* Settings.swift in Sources */,
 				AA90E104208F732800639262 /* AppDelegate.swift in Sources */,
 				94AD3DAF20B59A2C00C79B79 /* EventAdderViewController.swift in Sources */,
 				AA84272920B0B504009C853C /* User.swift in Sources */,
 				38BED01D20B866B70006F423 /* EducationViewController.swift in Sources */,
 				AA88F1D3209538B200B34365 /* EventsViewController.swift in Sources */,
 				38BED03520B8C5330006F423 /* UserStatisticsViewController.swift in Sources */,
-				AA84272B20B0CE04009C853C /* HardcodedThings.swift in Sources */,
 				AA47E79620AC41DA00F4F1DF /* Extensions.swift in Sources */,
 				AA9E07D1209C7EDC00681BCA /* MenuCollectionViewCell.swift in Sources */,
 			);

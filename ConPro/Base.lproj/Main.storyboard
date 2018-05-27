@@ -75,11 +75,11 @@
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="4Jw-aT-P7Q">
                                 <rect key="frame" x="197" y="459" width="20" height="20"/>
                             </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HzA-CS-XkM">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HzA-CS-XkM">
                                 <rect key="frame" x="192" y="499" width="30" height="30"/>
                                 <state key="normal" title="Skip"/>
                                 <connections>
-                                    <segue destination="3Ga-IJ-rmq" kind="show" id="2G6-Z1-WA1"/>
+                                    <segue destination="3Ga-IJ-rmq" kind="show" identifier="segueToEvents" id="qdY-rZ-oW3"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -115,7 +115,6 @@
                         <outlet property="loadingIndicator" destination="4Jw-aT-P7Q" id="hTC-gW-bhJ"/>
                         <outlet property="passwordTextField" destination="BuU-k3-oiR" id="5Ty-l2-0Db"/>
                         <outlet property="statusLabel" destination="6kL-xH-XV1" id="pq0-9H-v1F"/>
-                        <segue destination="3Ga-IJ-rmq" kind="show" identifier="segueToEvents" id="SCy-ev-Se4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -329,6 +328,7 @@
                     <connections>
                         <outlet property="eventsSwitch" destination="N82-F0-pYY" id="NHR-ay-dTE"/>
                         <outlet property="eventsTableView" destination="R5t-SW-ziP" id="iUe-4k-RoE"/>
+                        <outlet property="searchBar" destination="gQs-S3-dWV" id="htv-Km-5lF"/>
                         <outlet property="switchLabel" destination="bvy-nN-q6y" id="Ngf-dc-ixB"/>
                         <outlet property="userImage" destination="nCW-42-3ed" id="jCB-g2-LhD"/>
                         <outlet property="userName" destination="uxR-eW-P4P" id="jjr-o7-YR3"/>
@@ -747,7 +747,7 @@
                                                     </state>
                                                     <connections>
                                                         <action selector="logoutAction:" destination="9lA-Xf-w88" eventType="touchUpInside" id="f6w-hL-gmU"/>
-                                                        <action selector="signoutAction:" destination="I9m-K8-LAC" eventType="touchUpInside" id="zVl-qk-Puu"/>
+                                                        <action selector="signoutAction:" destination="I9m-K8-LAC" eventType="touchUpInside" id="Fws-9w-frQ"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -758,9 +758,6 @@
                                                 <constraint firstItem="3tU-n8-Gee" firstAttribute="leading" secondItem="tMu-Jr-b4b" secondAttribute="leading" constant="20" id="uJh-ZS-O8I"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="BYZ-38-t0r" kind="show" id="CUl-jn-Y5S"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="znh-5k-uky">
                                         <rect key="frame" x="0.0" y="187.33333333333334" width="414" height="44"/>
@@ -1055,7 +1052,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Profile picture" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iHx-Mt-9j0">
-                                                    <rect key="frame" x="20" y="0.0" width="106" height="127"/>
+                                                    <rect key="frame" x="20" y="0.0" width="106" height="126"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -1068,20 +1065,11 @@
                                                     </constraints>
                                                     <state key="normal" title="Button" image="add_photo"/>
                                                 </button>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Voo-Mg-ZY8">
-                                                    <rect key="frame" x="186.33333333333334" y="31" width="65" height="65"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="Voo-Mg-ZY8" secondAttribute="height" multiplier="1:1" id="nqJ-Me-RIj"/>
-                                                    </constraints>
-                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Z2m-6w-4hX" firstAttribute="top" secondItem="PVR-gt-U7C" secondAttribute="top" constant="2" id="0xr-8F-GKX"/>
                                                 <constraint firstItem="Z2m-6w-4hX" firstAttribute="centerY" secondItem="PVR-gt-U7C" secondAttribute="centerY" id="aZP-ZY-gi7"/>
-                                                <constraint firstItem="Z2m-6w-4hX" firstAttribute="leading" secondItem="Voo-Mg-ZY8" secondAttribute="trailing" constant="20" id="hFJ-2E-pWs"/>
                                                 <constraint firstAttribute="trailing" secondItem="Z2m-6w-4hX" secondAttribute="trailing" constant="20" id="lap-3h-2Mt"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Voo-Mg-ZY8" secondAttribute="bottom" constant="20" id="nP4-hH-kpJ"/>
-                                                <constraint firstItem="Voo-Mg-ZY8" firstAttribute="top" secondItem="PVR-gt-U7C" secondAttribute="topMargin" constant="20" id="vfK-4g-r6z"/>
                                                 <constraint firstAttribute="bottom" secondItem="Z2m-6w-4hX" secondAttribute="bottom" constant="2" id="xOg-Xe-G5u"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -1105,13 +1093,6 @@
                                                         <outlet property="delegate" destination="X7Q-jm-rja" id="ZDt-wo-kZJ"/>
                                                     </connections>
                                                 </textField>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="luy-Un-Jj5">
-                                                    <rect key="frame" x="20" y="5" width="67" height="33.666666666666664"/>
-                                                    <state key="normal" title="Complete"/>
-                                                    <connections>
-                                                        <action selector="ChangeUserName:" destination="X7Q-jm-rja" eventType="touchUpInside" id="yf0-xb-TFi"/>
-                                                    </connections>
-                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K31-in-5Db">
                                                     <rect key="frame" x="320.33333333333331" y="2" width="33" height="39.666666666666664"/>
                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
@@ -1120,15 +1101,11 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="luy-Un-Jj5" secondAttribute="bottom" constant="5" id="0OY-Qc-YYa"/>
                                                 <constraint firstAttribute="bottom" secondItem="K31-in-5Db" secondAttribute="bottom" constant="2" id="0wO-ye-lE2"/>
                                                 <constraint firstItem="e4u-4w-KWr" firstAttribute="centerY" secondItem="LhJ-Y7-UsG" secondAttribute="centerY" id="14e-Qv-EbT"/>
                                                 <constraint firstAttribute="trailing" secondItem="e4u-4w-KWr" secondAttribute="trailing" constant="20" id="5na-ea-uVa"/>
                                                 <constraint firstItem="K31-in-5Db" firstAttribute="top" secondItem="LhJ-Y7-UsG" secondAttribute="top" constant="2" id="K5s-4D-JfD"/>
                                                 <constraint firstItem="e4u-4w-KWr" firstAttribute="leading" secondItem="K31-in-5Db" secondAttribute="trailing" constant="20" id="XBn-i1-Mqg"/>
-                                                <constraint firstItem="luy-Un-Jj5" firstAttribute="centerY" secondItem="LhJ-Y7-UsG" secondAttribute="centerY" id="XWq-jp-pVA"/>
-                                                <constraint firstItem="luy-Un-Jj5" firstAttribute="top" secondItem="LhJ-Y7-UsG" secondAttribute="top" constant="5" id="tLL-2n-FKg"/>
-                                                <constraint firstItem="luy-Un-Jj5" firstAttribute="leading" secondItem="LhJ-Y7-UsG" secondAttribute="leading" constant="20" id="yzj-Gt-nDK"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1369,7 +1346,9 @@
                         <outlet property="Age" destination="e4u-4w-KWr" id="fD3-Cm-uaI"/>
                         <outlet property="Education" destination="9V5-Ad-Wuy" id="dgZ-ON-n9N"/>
                         <outlet property="company" destination="Zye-im-yoa" id="WmS-13-U3j"/>
+                        <outlet property="email" destination="ySG-S0-X6W" id="10o-xI-Z6O"/>
                         <outlet property="firstName" destination="JOb-nO-X6O" id="NeK-Dt-d2p"/>
+                        <outlet property="phonenumber" destination="PJh-tJ-bEw" id="g7W-Cr-WwY"/>
                         <outlet property="presentpost" destination="biy-aS-QL4" id="PV4-wh-KKj"/>
                         <outlet property="secondName" destination="Phy-x5-O20" id="MZ9-Vl-Jx4"/>
                     </connections>
@@ -1844,7 +1823,7 @@
                                 <rect key="frame" x="192" y="538" width="30" height="30"/>
                                 <state key="normal" title="Skip"/>
                                 <connections>
-                                    <segue destination="3Ga-IJ-rmq" kind="show" id="95J-jQ-49v"/>
+                                    <segue destination="3Ga-IJ-rmq" kind="show" identifier="segueFromRegister" id="95J-jQ-49v"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -2408,6 +2387,5 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="95J-jQ-49v"/>
-        <segue reference="AAq-tE-m5x"/>
     </inferredMetricsTieBreakers>
 </document>

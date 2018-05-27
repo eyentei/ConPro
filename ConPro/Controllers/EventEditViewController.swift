@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class EventEditViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var selectedEvent: Event?
@@ -16,8 +17,8 @@ class EventEditViewController: UIViewController, UIImagePickerControllerDelegate
         TitleTextField.text = selectedEvent?.name
         PlaceTextField.text = selectedEvent?.place
         ImageView.image = UIImage(data: (selectedEvent?.image)!)
-        DateStart.text = selectedEvent?.timeStart?.toString()
-        DateFinish.text = selectedEvent?.timeEnd?.toString()
+        DateStart.text = selectedEvent?.timeStart.toString()
+        DateFinish.text = selectedEvent?.timeEnd.toString()
         
     }
     @IBOutlet weak var TitleTextField: UITextField!
@@ -47,12 +48,30 @@ class EventEditViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     @IBAction func SaveEdit(_ sender: Any) {
-        addedEvents[(selectedEvent?.id)! - 1].name = TitleTextField.text
-        addedEvents[(selectedEvent?.id)! - 1].place = PlaceTextField.text
-        addedEvents[(selectedEvent?.id)! - 1].image = ImageView.image?.data
-        addedEvents[(selectedEvent?.id)! - 1].timeStart = Date(date: DateStart.text!)
-        addedEvents[(selectedEvent?.id)! - 1].timeEnd = Date(date: DateFinish.text!)
-        addedEvents[(selectedEvent?.id)! - 1].eventDescription = DescrTextField.text
+        
+        
+        let realm = try! Realm()
+        
+        try! realm.write {
+            if let name = TitleTextField.text {
+                selectedEvent?.name = name
+            }
+            if let place = PlaceTextField.text {
+                selectedEvent?.place = place
+            }
+            if let image = ImageView.image {
+                selectedEvent?.image = image.resized(toWidth: 100)!.data!
+            }
+            
+            if let timeStart = Date(date: DateStart.text!) {
+                selectedEvent?.timeStart = timeStart
+            }
+            if let timeEnd = Date(date: DateFinish.text!) {
+                selectedEvent?.timeEnd = timeEnd
+            }
+            selectedEvent?.eventDescription = DescrTextField.text
+            navigationController?.popViewController(animated: true)
+        }
     }
     
     

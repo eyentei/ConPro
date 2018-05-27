@@ -1,5 +1,5 @@
 import UIKit
-import Moya
+import RealmSwift
 
 class RegisterViewController: UIViewController, UITextFieldDelegate {
 
@@ -26,29 +26,20 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             statusLabel.text = "Email is incorrect"
             return
         }
-        loadingIndicator.isHidden = false
-        provider.request(.register(email: email, password: password)) {
-            result in
-            switch result {
-            case let .success(moyaResponse):
-                do {
-                    let response = try moyaResponse.map(Response.self)
-                    UserDefaults.standard.set(response.data?.toJSON(), forKey:"token")
-                    
-                    self.performSegue(withIdentifier: "segueToEvents", sender: self)
-                }
-                catch {
-                    let error = error as? MoyaError
-                    
-                    if let code = error?.response?.statusCode {
-                        self.statusLabel.text = String(code)
-                    }
-                }
-                
-            case let .failure(error):
-                self.statusLabel.text = error.errorDescription
-            }
-            self.loadingIndicator.isHidden = true
+        let realm = try! Realm()
+        guard realm.object(ofType: User.self, forPrimaryKey: email) == nil else {
+            statusLabel.text = "User already exists"
+            return
+        }
+
+        let newUser = User(email: email, password: password)
+        newUser.image = #imageLiteral(resourceName: "cat").data!
+
+        try! realm.write {
+            realm.add(newUser)
+            UserDefaults.standard.set(newUser.email, forKey:"user")
+            currentUser = newUser
+            self.performSegue(withIdentifier: "segueFromRegister", sender: self)
         }
     }
 
