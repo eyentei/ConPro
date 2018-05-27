@@ -2632,7 +2632,7 @@
                                                     <rect key="frame" x="5" y="5" width="404" height="71.666666666666671"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kKE-LZ-Ibx">
-                                                            <rect key="frame" x="0.0" y="5.6666666666666643" width="60" height="59.999999999999993"/>
+                                                            <rect key="frame" x="0.0" y="6" width="60" height="60"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="60" id="6WN-pJ-hr5"/>
                                                                 <constraint firstAttribute="height" constant="60" id="fUE-fT-lFM"/>
