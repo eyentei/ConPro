@@ -1,10 +1,18 @@
 import UIKit
 import RealmSwift
 
-class EventAdderViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class EventAdderViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
 
+    @IBOutlet weak var categoryTextField: UITextField!
+    let eventCategories = ["Category","IT","Business","Nature", "Videogames", "Innovations", "Sports", "Music"]
+    var pickerView = UIPickerView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        categoryTextField.inputView = pickerView
+        
         dateStartSelection()
         dateFinishSelection()
         
@@ -101,6 +109,21 @@ class EventAdderViewController: UIViewController, UIImagePickerControllerDelegat
             DateStart.backgroundColor = UIColor.red
             DateFinish.backgroundColor = UIColor.red
         }
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return eventCategories.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return eventCategories[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        categoryTextField.text = eventCategories[row]
+        categoryTextField.resignFirstResponder()
     }
     
     

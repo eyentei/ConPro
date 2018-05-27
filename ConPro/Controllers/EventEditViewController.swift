@@ -9,11 +9,19 @@
 import UIKit
 import RealmSwift
 
-class EventEditViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class EventEditViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     var selectedEvent: Event?
+    
+    @IBOutlet weak var categoryTextField: UITextField!
+    let eventCategories = ["Category","IT","Business","Nature", "Videogames", "Innovations", "Sports", "Music"]
+    var pickerView = UIPickerView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        categoryTextField.inputView = pickerView
+        
         TitleTextField.text = selectedEvent?.name
         PlaceTextField.text = selectedEvent?.place
         ImageView.image = UIImage(data: (selectedEvent?.image)!)
@@ -74,7 +82,20 @@ class EventEditViewController: UIViewController, UIImagePickerControllerDelegate
         }
     }
     
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
     
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return eventCategories.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return eventCategories[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        categoryTextField.text = eventCategories[row]
+        categoryTextField.resignFirstResponder()
+    }
     
     
     override func didReceiveMemoryWarning() {

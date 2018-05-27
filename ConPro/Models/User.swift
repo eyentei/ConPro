@@ -10,7 +10,7 @@ class User: Object {
     @objc dynamic var phone = ""
     @objc dynamic var company = ""
     @objc dynamic var post = ""
-    @objc dynamic var education = ""
+    @objc dynamic var gender = ""
     @objc dynamic var address = ""
     @objc dynamic var image = Data()
     var eventsVisited = LinkingObjects(fromType: Event.self, property: "visitors")

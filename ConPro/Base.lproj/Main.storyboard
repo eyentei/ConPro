@@ -385,7 +385,7 @@
                                                                 <rect key="frame" x="205" y="0.0" width="204" height="222"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ylj-M9-qsV">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="204" height="73.333333333333329"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="204" height="54.666666666666664"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add new event" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="vYN-UF-v9j">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="155" height="44"/>
@@ -398,10 +398,10 @@
                                                                         <color key="backgroundColor" red="0.12156862745098039" green="0.12941176470588237" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fP6-rd-hcJ">
-                                                                        <rect key="frame" x="0.0" y="74.333333333333343" width="204" height="73.333333333333343"/>
+                                                                        <rect key="frame" x="0.0" y="55.666666666666671" width="204" height="55"/>
                                                                         <subviews>
                                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eQ2-C9-5wR">
-                                                                                <rect key="frame" x="5" y="21.666666666666657" width="194" height="30"/>
+                                                                                <rect key="frame" x="5" y="12.333333333333329" width="194" height="30"/>
                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="30" id="fUH-rk-B21"/>
@@ -418,11 +418,32 @@
                                                                             <constraint firstItem="eQ2-C9-5wR" firstAttribute="centerY" secondItem="fP6-rd-hcJ" secondAttribute="centerY" id="XZ7-ew-idx"/>
                                                                         </constraints>
                                                                     </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iU7-Sj-bje">
+                                                                        <rect key="frame" x="0.0" y="111.66666666666667" width="204" height="54.666666666666671"/>
+                                                                        <subviews>
+                                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Category" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M6n-Do-wKb" userLabel="Category">
+                                                                                <rect key="frame" x="5" y="12.333333333333343" width="194" height="30"/>
+                                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="30" id="lTt-OZ-UcF"/>
+                                                                                </constraints>
+                                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                                <textInputTraits key="textInputTraits"/>
+                                                                            </textField>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <constraints>
+                                                                            <constraint firstItem="M6n-Do-wKb" firstAttribute="leading" secondItem="iU7-Sj-bje" secondAttribute="leading" constant="5" id="Ave-YM-Df3"/>
+                                                                            <constraint firstItem="M6n-Do-wKb" firstAttribute="centerY" secondItem="iU7-Sj-bje" secondAttribute="centerY" id="VFd-Vj-jI6"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="M6n-Do-wKb" secondAttribute="trailing" constant="5" id="bsh-Do-26V"/>
+                                                                        </constraints>
+                                                                    </view>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kWL-C8-dvd">
-                                                                        <rect key="frame" x="0.0" y="148.66666666666666" width="204" height="73.333333333333343"/>
+                                                                        <rect key="frame" x="0.0" y="167.33333333333334" width="204" height="54.666666666666657"/>
                                                                         <subviews>
                                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Where is it gonna take place?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xO7-Gm-I4b">
-                                                                                <rect key="frame" x="5" y="21.666666666666686" width="194" height="30"/>
+                                                                                <rect key="frame" x="5" y="12.333333333333314" width="194" height="30"/>
                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" constant="30" id="aZm-4H-4Kr"/>
@@ -519,7 +540,7 @@
                                                                         <rect key="frame" x="0.0" y="0.0" width="204" height="73.333333333333329"/>
                                                                         <subviews>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffh-qI-aTp">
-                                                                                <rect key="frame" x="53" y="16.000000000000004" width="98" height="37.333333333333343"/>
+                                                                                <rect key="frame" x="53" y="18.333333333333314" width="98" height="35"/>
                                                                                 <color key="backgroundColor" red="0.14901960784313725" green="0.55294117647058827" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                                                                 <state key="normal" title="Create event">
@@ -665,6 +686,7 @@
                         <outlet property="ImageView" destination="ooc-Ne-eNh" id="fUN-kF-sXA"/>
                         <outlet property="PlaceTextField" destination="xO7-Gm-I4b" id="9RA-0A-qDw"/>
                         <outlet property="TitleTextField" destination="eQ2-C9-5wR" id="sXf-ke-ZeE"/>
+                        <outlet property="categoryTextField" destination="M6n-Do-wKb" id="1hy-Y6-6QU"/>
                         <outlet property="scrollView" destination="P4x-t5-hgG" id="Dar-DP-xFd"/>
                     </connections>
                 </viewController>
@@ -2100,7 +2122,7 @@
                                                         <rect key="frame" x="205" y="0.0" width="204" height="222"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jiP-VN-5fW">
-                                                                <rect key="frame" x="0.0" y="0.0" width="204" height="73.333333333333329"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="204" height="54.666666666666664"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Edit event" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="loc-rf-3dV">
                                                                         <rect key="frame" x="0.0" y="0.0" width="155" height="44"/>
@@ -2113,10 +2135,10 @@
                                                                 <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x7Y-bU-Che">
-                                                                <rect key="frame" x="0.0" y="74.333333333333343" width="204" height="73.333333333333343"/>
+                                                                <rect key="frame" x="0.0" y="55.666666666666671" width="204" height="55"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VgF-Qn-UP1">
-                                                                        <rect key="frame" x="5" y="21.666666666666657" width="194" height="30"/>
+                                                                        <rect key="frame" x="5" y="12.333333333333329" width="194" height="30"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="30" id="h5A-si-HZQ"/>
@@ -2133,11 +2155,32 @@
                                                                     <constraint firstItem="VgF-Qn-UP1" firstAttribute="leading" secondItem="x7Y-bU-Che" secondAttribute="leading" constant="5" id="y7p-Th-mnj"/>
                                                                 </constraints>
                                                             </view>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zo1-iK-9WU">
+                                                                <rect key="frame" x="0.0" y="111.66666666666667" width="204" height="54.666666666666671"/>
+                                                                <subviews>
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Category" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2rt-jd-y9j" userLabel="Category">
+                                                                        <rect key="frame" x="5" y="12.333333333333343" width="194" height="30"/>
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="30" id="Txe-bN-dH9"/>
+                                                                        </constraints>
+                                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <textInputTraits key="textInputTraits"/>
+                                                                    </textField>
+                                                                </subviews>
+                                                                <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="2rt-jd-y9j" firstAttribute="centerY" secondItem="zo1-iK-9WU" secondAttribute="centerY" id="EPL-sa-ijL"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="2rt-jd-y9j" secondAttribute="trailing" constant="5" id="FXE-Ub-Miu"/>
+                                                                    <constraint firstItem="2rt-jd-y9j" firstAttribute="leading" secondItem="zo1-iK-9WU" secondAttribute="leading" constant="5" id="hV8-Ud-1qT"/>
+                                                                </constraints>
+                                                            </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sgM-Fo-psM">
-                                                                <rect key="frame" x="0.0" y="148.66666666666666" width="204" height="73.333333333333343"/>
+                                                                <rect key="frame" x="0.0" y="167.33333333333334" width="204" height="54.666666666666657"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Where is it gonna take place?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OL5-zQ-kzh">
-                                                                        <rect key="frame" x="5" y="21.666666666666686" width="194" height="30"/>
+                                                                        <rect key="frame" x="5" y="12.333333333333314" width="194" height="30"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="30" id="kmZ-1c-F6f"/>
@@ -2371,6 +2414,7 @@
                         <outlet property="ImageView" destination="es5-hq-r7r" id="DIa-rs-N5O"/>
                         <outlet property="PlaceTextField" destination="OL5-zQ-kzh" id="8LF-dg-C7e"/>
                         <outlet property="TitleTextField" destination="VgF-Qn-UP1" id="mhl-Ae-JYX"/>
+                        <outlet property="categoryTextField" destination="2rt-jd-y9j" id="rVm-Re-L94"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gcl-vd-X7r" userLabel="First Responder" sceneMemberID="firstResponder"/>
