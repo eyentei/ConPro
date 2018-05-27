@@ -32,7 +32,6 @@ class ChatUsersViewController: UIViewController {
             }
         }
     }
-
 }
 
 extension ChatUsersViewController: UITableViewDelegate, UITableViewDataSource{

@@ -9,6 +9,7 @@ protocol FIRBaseDelegate : class {
 }
 
 class FIRBaseViewModel{
+    //MARK: Fields
     private var databaseReference = (UIApplication.shared.delegate as? AppDelegate)?.ref
     weak var delegate : FIRBaseDelegate?
     private var event: Event
@@ -70,7 +71,8 @@ class FIRBaseViewModel{
     
     //MARK: Messaging
     func sendMessage(with text: String){
-        let message = Message(text: text, sender: currentUser.firBaseUid!, timestamp: 0)
+        let timestamp = Date().timeIntervalSince1970
+        let message = Message(text: text, sender: currentUser.firBaseUid!, timestamp: timestamp, isImportant: false)
         let messageReference = databaseReference?.child("messages").child(event.name!).childByAutoId()
         messageReference?.updateChildValues(message.getJSONRepresentation(), withCompletionBlock: { (error, ref) in
             guard error == nil else{
@@ -86,7 +88,8 @@ class FIRBaseViewModel{
         let messagesReference = databaseReference?.child("messages").child(chatUid)
         messagesReference?.observe(.childAdded, with: { (snapshot) in
             messagesReference?.child(snapshot.key).observeSingleEvent(of: .value, with: { (messageSnapshot) in
-                if let message = Message(with: snapshot.value as! [AnyHashable:Any]){
+                if var message = Message(with: snapshot.value as! [AnyHashable:Any]){
+                    message.firbaseUid = snapshot.key
                     self.delegate?.didRecieveMessage(message)
                 }
             })
@@ -115,6 +118,17 @@ class FIRBaseViewModel{
                 }
             }
         })
+    }
+    
+    //MARK: Manage messages
+    func deleteMessage(with id: String){
+        let messageReference = databaseReference?.child("messages").child(event.name!).child(id)
+        messageReference?.removeValue()
+    }
+    
+    func setMessageImportancy(for id: String, isImportant: Bool){
+        let messageReference = databaseReference?.child("messages").child(event.name!).child(id).child("isImportant")
+        messageReference?.setValue(isImportant)
     }
 }
 

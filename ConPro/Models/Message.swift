@@ -3,37 +3,30 @@ import Foundation
 struct Message : Codable{
     var text: String
     var sender: String
-    var timestamp: Int64
+    var timestamp: Double
+    var firbaseUid: String!
+    var isImportant: Bool
     
-    init(text: String, sender: String, timestamp: Int64){
+    init(text: String, sender: String, timestamp: Double, isImportant: Bool){
         self.text = text
+        self.isImportant = isImportant
         self.sender = sender
         self.timestamp = timestamp
     }
     
     init?(with json: [AnyHashable : Any]){
-        if let text = json["text"] as? String, let sender = json["sender"] as? String, let timestamp = json["timestamp"] as? Int64{
+        if let text = json["text"] as? String, let sender = json["sender"] as? String, let timestamp = json["timestamp"] as? String, let isImportant = json["isImportant"] as? Bool{
             self.text = text
-            self.timestamp = timestamp
+            self.timestamp = Double(timestamp)!
             self.sender = sender
+            self.isImportant = isImportant
         } else{
             return nil
         }
     }
     
     func getJSONRepresentation() -> [AnyHashable: Any]{
-        return ["sender" : sender, "text" : text, "timestamp" : timestamp]
-    }
-}
-
-class Chat{
-    var uid: String
-    var title: String?
-    var timestamp: Int64?
-    var lastMessage: String?
-    
-    init(uid: String){
-        self.uid = uid
+        return ["sender" : sender, "text" : text, "timestamp" : String(timestamp), "isImportant" : isImportant]
     }
 }
 
