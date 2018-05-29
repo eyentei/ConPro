@@ -19,7 +19,6 @@
 		7891F9D020B90E670096326C /* CorrectPersonalDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7891F9CF20B90E670096326C /* CorrectPersonalDataViewController.swift */; };
 		9488C1E420B988E300180B2C /* EventEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9488C1E320B988E300180B2C /* EventEditViewController.swift */; };
 		94AD3DAF20B59A2C00C79B79 /* EventAdderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AD3DAE20B59A2C00C79B79 /* EventAdderViewController.swift */; };
-		AA187C212094895600D29D5E /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA187C202094895600D29D5E /* APIService.swift */; };
 		AA47E79620AC41DA00F4F1DF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA47E79520AC41DA00F4F1DF /* Extensions.swift */; };
 		AA7A3F2420B7510C00FCD74D /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7A3F2320B7510C00FCD74D /* InfoViewController.swift */; };
 		AA7A3F2620B9E40A00FCD74D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7A3F2520B9E40A00FCD74D /* Settings.swift */; };
@@ -35,7 +34,6 @@
 		AA90E119208F76B900639262 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA90E118208F76B900639262 /* LoginViewController.swift */; };
 		AA90E11B208F7F2F00639262 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA90E11A208F7F2F00639262 /* RegisterViewController.swift */; };
 		AA9E07D1209C7EDC00681BCA /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9E07D0209C7EDC00681BCA /* MenuCollectionViewCell.swift */; };
-		AAB6B4232094B862008C4CB2 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAB6B4222094B862008C4CB2 /* Token.swift */; };
 		E6003933AACC2E746061BEFE /* Pods_ConPro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CA5C7B39B96C88B4CF553D9 /* Pods_ConPro.framework */; };
 		F862C3F020B75D7D0064828C /* NewsAdderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F862C3EF20B75D7D0064828C /* NewsAdderViewController.swift */; };
 		F892545220B4D1E500E94C31 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = F892545120B4D1E400E94C31 /* News.swift */; };
@@ -60,7 +58,6 @@
 		9488C1E320B988E300180B2C /* EventEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventEditViewController.swift; sourceTree = "<group>"; };
 		94AD3DAA20B5996900C79B79 /* News.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		94AD3DAE20B59A2C00C79B79 /* EventAdderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAdderViewController.swift; sourceTree = "<group>"; };
-		AA187C202094895600D29D5E /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		AA47E79520AC41DA00F4F1DF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		AA7A3F2320B7510C00FCD74D /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		AA7A3F2520B9E40A00FCD74D /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -78,7 +75,6 @@
 		AA90E118208F76B900639262 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AA90E11A208F7F2F00639262 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		AA9E07D0209C7EDC00681BCA /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
-		AAB6B4222094B862008C4CB2 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		F862C3EF20B75D7D0064828C /* NewsAdderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsAdderViewController.swift; sourceTree = "<group>"; };
 		F892545120B4D1E400E94C31 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		F8A023ED20B5B19B00E5A96A /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
@@ -122,7 +118,6 @@
 		AA187C1F2094893C00D29D5E /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				AA187C202094895600D29D5E /* APIService.swift */,
 				AA47E79520AC41DA00F4F1DF /* Extensions.swift */,
 				AA7A3F2520B9E40A00FCD74D /* Settings.swift */,
 			);
@@ -166,7 +161,6 @@
 		AA90E115208F73BA00639262 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				AAB6B4222094B862008C4CB2 /* Token.swift */,
 				94AD3DAA20B5996900C79B79 /* News.swift */,
 				AA88F1D8209C4EC300B34365 /* Event.swift */,
 				AA84272820B0B504009C853C /* User.swift */,
@@ -293,21 +287,15 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ConPro/Pods-ConPro-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
-				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -344,7 +332,6 @@
 				7891F9CE20B90B880096326C /* CorrectProfileTableViewController.swift in Sources */,
 				AA88F1D9209C4EC300B34365 /* Event.swift in Sources */,
 				F8A023EE20B5B19B00E5A96A /* NewsTableViewCell.swift in Sources */,
-				AAB6B4232094B862008C4CB2 /* Token.swift in Sources */,
 				38BED01920B866A10006F423 /* GenderViewController.swift in Sources */,
 				9488C1E420B988E300180B2C /* EventEditViewController.swift in Sources */,
 				38BED01520B866910006F423 /* AgeViewController.swift in Sources */,
@@ -353,7 +340,6 @@
 				F8EE79CD20B4E10E003305E5 /* NewsViewController.swift in Sources */,
 				AA90E119208F76B900639262 /* LoginViewController.swift in Sources */,
 				F892545220B4D1E500E94C31 /* News.swift in Sources */,
-				AA187C212094895600D29D5E /* APIService.swift in Sources */,
 				AA88F1D5209BC71100B34365 /* EventTableViewCell.swift in Sources */,
 				7891F9D020B90E670096326C /* CorrectPersonalDataViewController.swift in Sources */,
 				AA88F1D7209C4E7E00B34365 /* EventViewController.swift in Sources */,
@@ -514,10 +500,7 @@
 				DEVELOPMENT_TEAM = U722829WAL;
 				INFOPLIST_FILE = ConPro/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ConPro.ConPro6969;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -534,10 +517,7 @@
 				DEVELOPMENT_TEAM = U722829WAL;
 				INFOPLIST_FILE = ConPro/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ConPro.ConPro6969;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
