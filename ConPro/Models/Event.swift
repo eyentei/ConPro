@@ -11,7 +11,7 @@ class Event: Object {
     @objc dynamic var eventCategory = ""
     @objc dynamic var eventDescription = ""
     @objc dynamic var organizer: User?
-    var news = List<News>()
+    var news = LinkingObjects(fromType: News.self, property: "event")
     var visitors = List<User>()
     
     override class func primaryKey() -> String? {
@@ -27,5 +27,6 @@ class Event: Object {
         self.organizer = organizer
         self.eventCategory = eventCategory
         self.eventDescription = eventDescription
+        
     }
 }

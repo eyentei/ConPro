@@ -7,6 +7,7 @@ class News: Object {
     @objc dynamic var message = ""
     @objc dynamic var eventIcon = Data()
     @objc dynamic var dateTime = Date()
+    @objc dynamic var event: Event?
     convenience init(name: String, message: String, eventIcon: Data = Data(), dateTime: Date = Date()) {
         self.init()
         self.name = name
