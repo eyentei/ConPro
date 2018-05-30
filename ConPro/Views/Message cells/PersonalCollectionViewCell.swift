@@ -5,6 +5,7 @@ class PersonalMessageCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var messageTextLabel: UILabel!
     @IBOutlet weak var messageTimeLabel: UILabel!
+    
     //MARK: Fields
     weak var delegate : ChatMessageDelegate?
     private var messageLongPressGestureRecognizer : UILongPressGestureRecognizer!
@@ -26,7 +27,6 @@ class PersonalMessageCollectionViewCell: UICollectionViewCell {
     }
     
     //MARK: Methods
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         containerView.layer.cornerRadius = 12

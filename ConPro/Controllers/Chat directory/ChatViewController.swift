@@ -64,7 +64,7 @@ class ChatViewController: UIViewController{
             let destinationViewController = segue.destination as? ChatUsersViewController
             destinationViewController?.event = event
             destinationViewController?.databaseViewModel = databaseViewModel
-            destinationViewController?.isOrganizer = (event.organizer == currentUser)
+            destinationViewController?.currentUser = currentUser
         default:
             break
         }
@@ -110,34 +110,38 @@ extension ChatViewController : ChatMessageDelegate{
     }
     
     func didSelectContextMenu(in cell: UICollectionViewCell) {
-        if let indexPath = collectionView.indexPath(for: cell){
-            if messagePopoverViewController == nil{
-                messagePopoverViewController = storyboard?.instantiateViewController(withIdentifier: "Message Popover View Controller") as? MessagePopoverViewController
-                messagePopoverViewController?.modalPresentationStyle = .popover
-                messagePopoverViewController?.modalTransitionStyle = .flipHorizontal
-                messagePopoverViewController?.preferredContentSize = CGSize(width: collectionView.frame.width * 2/3, height: 40)
-                messagePopoverViewController?.delegate = self
-            }
-            if let popoverPresentationController = messagePopoverViewController?.popoverPresentationController{
-                popoverPresentationController.delegate = self
-                if let messageCell = cell as? ForeignMessageCollectionViewCell{
-                    messagePopoverViewController!.selectedIndex = indexPath.row
-                    popoverPresentationController.sourceView = messageCell.containerView
-                    popoverPresentationController.sourceRect = messageCell.containerView.bounds
-                    popoverPresentationController.permittedArrowDirections = [.up, .down]
-                    present(messagePopoverViewController!, animated: true, completion: nil)
-                } else if let messageCell = cell as? PersonalMessageCollectionViewCell{
-                    messagePopoverViewController!.selectedIndex = indexPath.row
-                    popoverPresentationController.sourceView = messageCell.containerView
-                    popoverPresentationController.sourceRect = messageCell.containerView.bounds
-                    popoverPresentationController.permittedArrowDirections = [.up, .down]
-                    present(messagePopoverViewController!, animated: true, completion: nil)
+        if databaseViewModel?.currentUserChatStatus == .admin || databaseViewModel?.currentUserChatStatus == .organizer{
+            if let indexPath = collectionView.indexPath(for: cell){
+                if messagePopoverViewController == nil{
+                    messagePopoverViewController = storyboard?.instantiateViewController(withIdentifier: "Message Popover View Controller") as? MessagePopoverViewController
+                    messagePopoverViewController?.modalPresentationStyle = .popover
+                    messagePopoverViewController?.modalTransitionStyle = .flipHorizontal
+                    messagePopoverViewController?.preferredContentSize = CGSize(width: collectionView.frame.width * 2/3, height: 40)
+                    messagePopoverViewController?.delegate = self
+                }
+                if let popoverPresentationController = messagePopoverViewController?.popoverPresentationController{
+                    popoverPresentationController.delegate = self
+                    if let messageCell = cell as? ForeignMessageCollectionViewCell{
+                        messagePopoverViewController!.selectedIndex = indexPath.row
+                        popoverPresentationController.sourceView = messageCell.containerView
+                        popoverPresentationController.sourceRect = messageCell.containerView.bounds
+                        popoverPresentationController.permittedArrowDirections = [.up, .down]
+                        present(messagePopoverViewController!, animated: true, completion: nil)
+                    } else if let messageCell = cell as? PersonalMessageCollectionViewCell{
+                        messagePopoverViewController!.selectedIndex = indexPath.row
+                        popoverPresentationController.sourceView = messageCell.containerView
+                        popoverPresentationController.sourceRect = messageCell.containerView.bounds
+                        popoverPresentationController.permittedArrowDirections = [.up, .down]
+                        present(messagePopoverViewController!, animated: true, completion: nil)
+                    }
                 }
             }
         }
     }
 }
 
+
+//MARK: MessageEditingProtocol
 extension ChatViewController : MessageEditingProtocol{
     func deleteMessage(in index: Int) {
         if let messageUid = messages[index].firbaseUid{
@@ -202,9 +206,9 @@ extension ChatViewController : UICollectionViewDelegate, UICollectionViewDataSou
             let boundingBox = messages[indexPath.row].text.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [kCTFontAttributeName as NSAttributedStringKey: UIFont.systemFont(ofSize: 16)], context: nil)
             return CGSize(width:width - 20, height: boundingBox.height + 40)
         } else{
-            let constraintRect = CGSize(width: width/2, height: .greatestFiniteMagnitude)
+            let constraintRect = CGSize(width: width / 2, height: .greatestFiniteMagnitude)
             let boundingBox = messages[indexPath.row].text.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [kCTFontAttributeName as NSAttributedStringKey: UIFont.systemFont(ofSize: 16)], context: nil)
-            return CGSize(width:width - 20, height: boundingBox.height + 50)
+            return CGSize(width:width - 20, height: boundingBox.height + 70)
         }
     }
     

@@ -34,4 +34,5 @@ enum ChatStatus : String{
     case admin = "admin"
     case member = "member"
     case muted = "muted"
+    case organizer = "organizer"
 }

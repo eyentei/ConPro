@@ -19,7 +19,7 @@ class ForeignMessageCollectionViewCell: UICollectionViewCell {
     private var messageLongPressGestureRecognizer : UILongPressGestureRecognizer!
     private var userTapGestureRecognizer : UITapGestureRecognizer!
     private lazy var importancyMark : UIView = {
-        let view = UIView(frame: CGRect(x: containerView.frame.origin.x - 5, y: 0, width: 15, height: 15))
+        let view = UIView(frame: CGRect(x: self.frame.width * (7/10) + 5, y: containerView.frame.origin.y , width: 15, height: 15))
         view.backgroundColor = .red
         view.layer.cornerRadius = view.frame.width / 2
         view.layer.masksToBounds = true
@@ -54,7 +54,7 @@ class ForeignMessageCollectionViewCell: UICollectionViewCell {
     }
     
     func makeImportantVisibility(){
-        containerView.addSubview(importancyMark)
+        addSubview(importancyMark)
     }
     
     //MARK: Gestures actions

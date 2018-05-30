@@ -8,12 +8,19 @@ protocol FIRBaseDelegate : class {
     func didRecieveException(title: String, message: String)
 }
 
+protocol UserStatusDelegate : class {
+    func currentUsersStatusDidChange()
+}
+
+
 class FIRBaseViewModel{
     //MARK: Fields
     private var databaseReference = (UIApplication.shared.delegate as? AppDelegate)?.ref
     weak var delegate : FIRBaseDelegate?
+    weak var userDelegate : UserStatusDelegate?
     private var event: Event
     private var currentUser: User
+    var currentUserChatStatus: ChatStatus!
     
     init(for user: User, in event: Event){
         self.event = event
@@ -37,6 +44,16 @@ class FIRBaseViewModel{
             }
             
             self.currentUser.firBaseUid = user!.uid
+            let currentUserReference = self.databaseReference?.child("users").child(self.event.name!).child(user!.uid)
+            currentUserReference?.observeSingleEvent(of: .value, with: { (userSnapshot) in
+                //Save chat status from database
+                if let userJSON = (userSnapshot.value as? [String : Any]){
+                    if let chatStatus = userJSON["status"] as? String{
+                        self.currentUserChatStatus = ChatStatus(rawValue: chatStatus)!
+                    }
+                }
+            })
+            self.setUserStatusObserver()
             completion()
         }
     }
@@ -50,20 +67,22 @@ class FIRBaseViewModel{
             
             self.currentUser.firBaseUid = uid
             var status : ChatStatus!
-            switch (self.currentUser == self.event.organizer){
+            switch (self.currentUser.id == self.event.organizer?.id){
             case true:
-                status = ChatStatus.admin
+                status = ChatStatus.organizer
                 break
             case false:
                 status = ChatStatus.member
                 break
             }
+            self.currentUserChatStatus = status
             let usersReference = self.databaseReference?.child("users").child(self.event.name!).child(uid)
             usersReference?.updateChildValues(["name" : (self.currentUser.name ?? "Username"), "email" : self.currentUser.email, "password" : self.currentUser.password, "status" : status.rawValue], withCompletionBlock: { (error, ref) in
                 if error != nil{
                     print(error!.localizedDescription)
                     return
                 }
+                self.setUserStatusObserver()
                 completion()
             })
         }
@@ -101,22 +120,23 @@ class FIRBaseViewModel{
     }
     
     //MARK: Users
-    func fetchAllChatUsers(completion: @escaping(((User, String)) -> Void)){
-        let usersReference = (UIApplication.shared.delegate as? AppDelegate)?.ref.child("users").child(event.name!)
+    func fetchAllChatUsers(completion: @escaping(([(User, ChatStatus)]) -> Void)){
+        let usersReference = databaseReference?.child("users").child(event.name!)
         usersReference?.observeSingleEvent(of: .value, with: { (snapshot) in
-            if let usersData = snapshot.value as? [String : Any]{
-                for userUid in Array(usersData.keys){
-                    let singleUserReference = usersReference?.child(userUid)
-                    singleUserReference?.observeSingleEvent(of: .value, with: { (userSnapshot) in
-                        if let userJSON = userSnapshot.value as? [String : Any]{
-                            if let name = userJSON["name"] as? String, let email = userJSON["email"] as? String, let password = userJSON["password"] as? String, let status = userJSON["status"] as? String{
-                                let fetchedUser = User(id: 0, name: name, image: #imageLiteral(resourceName: "cat").data!, email: email, password: password)
-                                completion((fetchedUser, status))
-                            }
+            var fetchedData = [(User, ChatStatus)]()
+            if let usersDictionary = snapshot.value as? [String : Any]{
+                for user in usersDictionary{
+                    if let userJSON = user.value as? [String : Any]{
+                        if let name = userJSON["name"] as? String, let email = userJSON["email"] as? String, let password = userJSON["password"] as? String, let status = userJSON["status"] as? String{
+                            let fetchedUser = User(id: 0, name: name, image: #imageLiteral(resourceName: "cat").data!, email: email, password: password)
+                            fetchedUser.firBaseUid = user.key
+                            let fetchedStatus = ChatStatus(rawValue: status)!
+                            fetchedData.append((fetchedUser, fetchedStatus))
                         }
-                    })
+                    }
                 }
             }
+            completion(fetchedData)
         })
     }
     
@@ -129,6 +149,34 @@ class FIRBaseViewModel{
     func setMessageImportancy(for id: String, isImportant: Bool){
         let messageReference = databaseReference?.child("messages").child(event.name!).child(id).child("isImportant")
         messageReference?.setValue(isImportant)
+    }
+    
+    //MARK: Manage users
+    func muteUser(with id: String){
+        let userStatusReference = databaseReference?.child("users").child(event.name!).child(id).child("status")
+        userStatusReference?.setValue(ChatStatus.muted.rawValue)
+    }
+    
+    func adminUser(with id: String, shouldBecameAdmin: Bool){
+        let userStatusReference = databaseReference?.child("users").child(event.name!).child(id).child("status")
+        if shouldBecameAdmin{
+            userStatusReference?.setValue(ChatStatus.admin.rawValue)
+        } else{
+            userStatusReference?.setValue(ChatStatus.member.rawValue)
+        }
+    }
+    
+    func setUserStatusObserver(){
+        print("Observer Set")
+        if let currentUserUid = currentUser.firBaseUid{
+            let currentUserReference = databaseReference?.child("users").child(event.name!).child(currentUserUid).child("status")
+            currentUserReference?.observe(.value, with: { (snapshot) in
+                if let newStatus = snapshot.value as? String{
+                    self.currentUserChatStatus = ChatStatus(rawValue: newStatus)
+                    self.userDelegate?.currentUsersStatusDidChange()
+                }
+            })
+        }
     }
 }
 

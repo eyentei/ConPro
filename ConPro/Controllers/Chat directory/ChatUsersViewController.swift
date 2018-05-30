@@ -11,6 +11,19 @@ class ChatUsersViewController: UIViewController {
     }
     
     //MARK: Fields
+    private lazy var muteAction : UITableViewRowAction = {
+        let mute = UITableViewRowAction(style: .destructive, title: "Mute", handler: { (action, indexPath) in
+            self.databaseViewModel.muteUser(with: self.users[indexPath.row].0.firBaseUid!)
+        })
+        return mute
+    }()
+    private lazy var adminAction : UITableViewRowAction = {
+        let admin = UITableViewRowAction(style: .default, title: "Admin", handler: { (action, indexPath) in
+            self.databaseViewModel.muteUser(with: self.users[indexPath.row].0.firBaseUid!)
+        })
+        admin.backgroundColor = .green
+        return admin
+    }()
     private var activityIndicator : UIActivityIndicatorView = {
         let ai = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
         ai.color = UIColor.darkGray
@@ -18,22 +31,44 @@ class ChatUsersViewController: UIViewController {
     }()
     private var users = [(User, ChatStatus)]()
     var event: Event!
-    var databaseViewModel: FIRBaseViewModel!
-    var isOrganizer : Bool!
+    var databaseViewModel: FIRBaseViewModel!{
+        didSet{
+            databaseViewModel.userDelegate = self
+        }
+    }
+    var currentUser: User!
     
     //MARK: Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        databaseViewModel.fetchAllChatUsers { (data) in
-            let userStatus : ChatStatus = ChatStatus(rawValue: data.1) ?? .member
-            self.users.append((data.0, userStatus))
+        tableView.allowsMultipleSelectionDuringEditing = true
+        fetchUsers()
+    }
+    
+    private func fetchUsers(){
+        activityIndicator.frame = tableView.bounds
+        tableView.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        databaseViewModel.fetchAllChatUsers { (fetchedUsersData) in
+            self.users = fetchedUsersData
             DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.removeFromSuperview()
                 self.tableView.reloadData()
             }
         }
     }
 }
 
+//MARK: UserStatusDelegate
+extension ChatUsersViewController : UserStatusDelegate{
+    func currentUsersStatusDidChange() {
+        tableView.reloadData()
+    }
+}
+
+
+//MARK: UITableViewDelegate/DataSource
 extension ChatUsersViewController: UITableViewDelegate, UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -49,6 +84,30 @@ extension ChatUsersViewController: UITableViewDelegate, UITableViewDataSource{
         cell.statusLabel.text = users[indexPath.row].1.rawValue
         cell.imageView?.image = UIImage(data: users[indexPath.row].0.image!)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        //Cannot edit personal row
+        if users[indexPath.row].0.id == currentUser.id{
+            return false
+        }
+        switch databaseViewModel.currentUserChatStatus!{
+        case .member, .muted:
+            return false
+        case .admin, .organizer:
+            return true
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        switch databaseViewModel.currentUserChatStatus!{
+        case .organizer:
+            return [adminAction, muteAction]
+        case .admin:
+            return [muteAction]
+        case .muted, .member:
+            return nil
+        }
     }
 }
 

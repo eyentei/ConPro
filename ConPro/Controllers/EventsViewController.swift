@@ -32,7 +32,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         //userName.text = myString
         loadEvents()
-        currentUser = u1
+        currentUser = u2
         u1.eventsVisited = Array(addedEvents[1...3])
         u1.eventsOrganized = addedEvents.filter({$0.organizer?.id == u1.id})
         u2.eventsOrganized = addedEvents.filter({$0.organizer?.id == u2.id})
@@ -170,8 +170,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        currentUser = u1
+        currentUser = u2
         allEvents = addedEvents
         userName.text = currentUser.name
         userImage.image = currentUser.image?.image
