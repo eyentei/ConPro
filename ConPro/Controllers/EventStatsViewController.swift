@@ -22,12 +22,12 @@ class EventStatsViewController: UIViewController {
     var genderView: PieChartView!
     var educationView: PieChartView!
     var subs : Int = 100
-    var subsAgeValues : [Int] = [1,2,3,4]
+    var subsAgeValues : [Int] = [0,0,0,0]
     let subsAgeLabels = ["13-17","18-24","25-34","35-44+"]
-    var subsGenderValues : [Int] = [2,6]
+    var subsGenderValues : [Int] = [0,0]
     let subsGenderLabels = ["male","female"]
-    var subsEducationValues : [Int] = [3,6,8]
-    let subsEducationLabels = ["kid","student","specialist"]
+    var subsEducationValues : [Int] = []
+    var subsEducationLabels : [String] = []
     
     
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
@@ -72,24 +72,8 @@ class EventStatsViewController: UIViewController {
         viewContainer.autoresizesSubviews = true
         viewContainer.sizeToFit()
         ageView.translatesAutoresizingMaskIntoConstraints = false
-        
-//        let user1 = User()
-//        user1.age = 13
-//        user1.post = "student"
-//        user1.gender = "male"
-//        let user2 = User()
-//        user2.age = 33
-//        user2.post = "specialist"
-//        user2.gender = "female"
-//        let user3 = User()
-//        user3.age = 27
-//        user3.post = "student"
-//        user3.gender = "male"
-//        selectedEvent!.visitors.append(user1)
-//        selectedEvent!.visitors.append(user2)
-//        selectedEvent!.visitors.append(user3)
-        
-//        getSubsStats()
+        ageView.drawValueAboveBarEnabled = true
+        getSubsStats()
         
         
         totalSubsLabel.text = "Total Subs:\(subs)"
@@ -100,19 +84,6 @@ class EventStatsViewController: UIViewController {
         
     }
     func updateAgeChartView() {
-        
-        //        var ageArray = subsAgeValues.filter{$0 != 0}
-        //        let ageValues : Int
-        //        let ageLabels :
-        //        for age in subsAgeValues{
-        //            if age == 0
-        //            {
-        //                var index =
-        //            }
-        //        }
-        
-        
-        
         var dataAges = [ChartDataEntry]()
         
         for i in 0..<subsAgeValues.count {
@@ -131,30 +102,51 @@ class EventStatsViewController: UIViewController {
         
         
         let barChartData = BarChartData(dataSet: barChartDataSet)
-        barChartData.setDrawValues(true)
         barChartData.setValueTextColor(NSUIColor.groupTableViewBackground)
+        barChartData.setValueFont(UIFont.systemFont(ofSize: 12.0, weight: UIFont.Weight.bold))
         
         
         ageView.chartDescription?.text = ""
         ageView.legend.enabled = false
         
-        ageView.xAxis.gridColor = NSUIColor.groupTableViewBackground
+        ageView.xAxis.drawGridLinesEnabled = false
+        
         ageView.xAxis.axisLineColor = NSUIColor.groupTableViewBackground
         ageView.rightAxis.labelTextColor = NSUIColor.groupTableViewBackground
         ageView.leftAxis.labelTextColor = NSUIColor.groupTableViewBackground
-        
+        ageView.leftAxis.axisMinimum = 0
+        ageView.rightAxis.axisMinimum = 0
+        ageView.leftAxis.drawGridLinesEnabled = false
+        ageView.rightAxis.drawGridLinesEnabled = false
+        ageView.leftAxis.drawAxisLineEnabled = false
+        ageView.rightAxis.drawAxisLineEnabled = false
+        ageView.leftAxis.drawTopYLabelEntryEnabled = true
+        ageView.rightAxis.drawTopYLabelEntryEnabled = true
+        ageView.leftAxis.drawBottomYLabelEntryEnabled = true
+        ageView.rightAxis.drawBottomYLabelEntryEnabled = true
+        ageView.rightAxis.drawLabelsEnabled = false
+        ageView.leftAxis.drawLabelsEnabled = false
         
         ageView.xAxis.valueFormatter = IndexAxisValueFormatter(values: subsAgeLabels)
-        ageView.xAxis.granularityEnabled = true
+        
+        
+        
+        ageView.xAxis.labelPosition = .bottom
+        ageView.xAxis.labelTextColor = NSUIColor.groupTableViewBackground
+        ageView.xAxis.labelFont = UIFont.systemFont(ofSize: 17.0, weight: UIFont.Weight.bold)
+        //        ageView.xAxis.labelFont = NSUIFont.init(name: "Futura", size: 15.0)!
+        ageView.xAxis.drawGridLinesEnabled = false
         ageView.xAxis.granularity = 1
         
         
-        ageView.xAxis.labelPosition = .bottomInside
-        ageView.xAxis.drawGridLinesEnabled = false
         
         
         ageView.animate(xAxisDuration: 1.5, yAxisDuration: 1.5)
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = 0
         
+        barChartData.setValueFormatter(DefaultValueFormatter(formatter:formatter))
+        ageView.drawValueAboveBarEnabled = true
         ageView.data = barChartData
         
     }
@@ -166,7 +158,8 @@ class EventStatsViewController: UIViewController {
             dataSex.append(entry)
         }
         let pieChartDataSet = PieChartDataSet(values: dataSex, label: nil)
-        
+        pieChartDataSet.entryLabelFont = UIFont.systemFont(ofSize: 15.0, weight: UIFont.Weight.light)
+        pieChartDataSet.valueFont = UIFont.systemFont(ofSize: 17.0, weight: UIFont.Weight.bold)
         if #available(iOS 11.0, *) {
             pieChartDataSet.colors = [UIColor(named: "Color-1"),UIColor(named: "Color-4")] as! [NSUIColor]
         } else {
@@ -176,15 +169,15 @@ class EventStatsViewController: UIViewController {
         pieChartDataSet.valueTextColor = UIColor.black
         pieChartDataSet.selectionShift = 0
         let chartData = PieChartData(dataSet: pieChartDataSet)
-        
         genderView.chartDescription?.text = ""
-        
         genderView.animate(xAxisDuration: 1.5, yAxisDuration: 1.5)
         genderView.holeRadiusPercent = 0
         genderView.transparentCircleRadiusPercent = 0
         genderView.legend.enabled = false
         genderView.minOffset = 0
-        
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = 0
+        chartData.setValueFormatter(DefaultValueFormatter(formatter:formatter))
         genderView.data = chartData
     }
     func updateEducationChartView() {
@@ -196,9 +189,10 @@ class EventStatsViewController: UIViewController {
             dataEducation.append(entry)
         }
         let pieChartDataSet = PieChartDataSet(values: dataEducation, label: nil)
-        
+        pieChartDataSet.entryLabelFont = UIFont.systemFont(ofSize: 15.0, weight: UIFont.Weight.light)
+        pieChartDataSet.valueFont = UIFont.systemFont(ofSize: 17.0, weight: UIFont.Weight.bold)
         if #available(iOS 11.0, *) {
-            pieChartDataSet.colors = [UIColor(named: "Color-2"),UIColor(named: "Color-3"),UIColor(named: "Color-4")] as! [NSUIColor]
+            pieChartDataSet.colors = [UIColor(named: "Color-1"),UIColor(named: "Color-2"),UIColor(named: "Color-3"),UIColor(named: "Color-4")] as! [NSUIColor]
         } else {
             pieChartDataSet.colors = ChartColorTemplates.joyful()
         }
@@ -215,25 +209,67 @@ class EventStatsViewController: UIViewController {
         educationView.legend.enabled = false
         educationView.minOffset = 0
         
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = 0
+        chartData.setValueFormatter(DefaultValueFormatter(formatter:formatter))
+        
         educationView.data = chartData
+        
         
     }
     func getSubsStats(){
-        //        subsAgeValues.removeAll()
-        //        subsGenderValues.removeAll()
-        //        subsEducationValues.removeAll()
+        subsAgeValues = [0,0,0,0]
+        subsGenderValues = [0,0]
+        subsEducationValues = []
+        var subPost = [String:Int]()
+        let user1 = User()
+        user1.post = "student"
+        user1.gender = "male"
+        user1.age = 14
+        let user2 = User()
+        user2.gender = "female"
+        user2.post = "IT specilist"
+        user2.age = 24
+        let user3 = User()
+        user3.post = "student"
+        user3.gender = "male"
+        user3.age = 34
+        let user4 = User()
+        user4.age = 17
+        user4.post = "lawer"
+        user4.gender = "male"
+        let user5 = User()
+        user5.age = 22
+        user5.gender = "female"
+        user5.post = "analyst"
+        let user6 = User()
+        user6.age = 22
+        user6.gender = "female"
+        user6.post = "analyst"
+        let visitors = [user1,user2,user3,user4,user5,user6]
         
-        for sub in selectedEvent!.visitors
+        for sub in visitors
         {
-            if sub.age >= 13 || sub.age <= 17 {subsAgeValues[0] = subsAgeValues[0] + 1}
-            if sub.age > 24 || sub.age <= 34 {subsAgeValues[2]+=1}
+            if sub.age >= 13 && sub.age <= 17 {subsAgeValues[0]+=1}
+            if sub.age > 17 && sub.age <= 24 {subsAgeValues[1]+=1}
+            if sub.age > 24 && sub.age <= 34 {subsAgeValues[2]+=1}
             if sub.age > 34{subsAgeValues[3]+=1}
             if sub.gender == "male" {subsGenderValues[0]+=1}
             if sub.gender == "female" {subsGenderValues[1]+=1}
-            if sub.post == "student"{subsEducationValues[0]+=1}
-            if sub.post == "schoolkid"{subsEducationValues[1]+=1}
-            if sub.post == "specialist"{subsEducationValues[2]+=1}
+            if sub.post != " "{
+                if subPost[sub.post] == nil{
+                    subPost[sub.post] = 1
+                }
+                else {
+                    subPost[sub.post] = subPost[sub.post]! + 1
+                }
+            }
         }
+        
+        subsEducationValues.append(contentsOf: subPost.values)
+        subsEducationLabels.append(contentsOf: subPost.keys)
     }
 }
+
+
 

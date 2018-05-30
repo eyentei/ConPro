@@ -11,16 +11,16 @@ class NewsAdderViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var modalWindow: UIView!
     @IBOutlet weak var symbolsLeft: UILabel!
     
-    @IBAction func publishAction(_ sender: Any) {
-        let realm = try! Realm()
-        
-        try! realm.write {
-            selectedEvent?.news.append(News(name: (selectedEvent?.name)!, message: newsMessage.text))
-            selectedEvent?.news.last?.eventIcon = (selectedEvent?.image)!
-            newsViewController.newsTableView.reloadData()
-            dismiss(animated: true, completion: nil)
-        }
-    }
+//    @IBAction func publishAction(_ sender: Any) {
+//        let realm = try! Realm()
+//
+////        try! realm.write {
+////            selectedEvent?.news.append(News(name: (selectedEvent?.name)!, message: newsMessage.text))
+////            selectedEvent?.news.last?.eventIcon = (selectedEvent?.image)!
+////            newsViewController.newsTableView.reloadData()
+////            dismiss(animated: true, completion: nil)
+////        }
+//    }
     @IBAction func cancelButton(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
