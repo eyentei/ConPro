@@ -1,6 +1,6 @@
 import Foundation
 
-struct Message : Codable{
+struct Message{
     var text: String
     var sender: String
     var timestamp: Double

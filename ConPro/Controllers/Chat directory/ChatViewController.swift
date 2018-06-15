@@ -56,6 +56,12 @@ class ChatViewController: UIViewController{
             databaseViewModel?.sendMessage(with: messageText)
         }
     }
+
+    @IBAction func usersButtonPressed(_ sender: Any) {
+        if !activityIndicator.isAnimating{
+            performSegue(withIdentifier: "Show Chat Users View Controller", sender: nil)
+        }
+    }
     
     //MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
