@@ -12,12 +12,11 @@ import UIKit
 class CorrectProfileTableViewController: UITableViewController {
     //let appDelegate = UIApplication.shared.delegate as? AppDelegate
     @IBAction func signoutAction(_ sender: UIButton) {
-        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
         self.present(controller, animated: true, completion: { () -> Void in
         })
-        UserDefaults.standard.removeObject(forKey: "token")
+        UserDefaults.standard.removeObject(forKey: "user")
     }
     
     @IBOutlet weak var notificationOutlet: UISwitch!

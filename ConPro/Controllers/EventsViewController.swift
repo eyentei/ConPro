@@ -1,17 +1,17 @@
 import UIKit
-import Moya
+import RealmSwift
 
 class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     var appDelegate = UIApplication.shared.delegate as? AppDelegate
-    
 
     let sections = ["Current & future events", "Past events"]
-    var pastEvents: [Event] = []
-    var currentEvents: [Event] = []
-    var currentUser: User!
-    var allEvents: [Event] = []
-    var organized: [Event] = []
-    var visited: [Event] = []
+    var allEvents: Results<Event>?
+    
+    var pastEvents: AnyRealmCollection<Event>?
+    var currentEvents: AnyRealmCollection<Event>?
+  
+    var organized: AnyRealmCollection<Event>?
+    var visited: AnyRealmCollection<Event>?
     
     @IBOutlet weak var eventsTableView: UITableView!
     @IBOutlet weak var userImage: UIImageView!
@@ -20,43 +20,30 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var switchLabel: UILabel!
     @IBOutlet weak var eventsSwitch: UISwitch!
     @IBOutlet weak var visitorOrganizerSC: UISegmentedControl!
+    @IBOutlet weak var searchBar: UISearchBar!
+    var realm: Realm?
     
     
     @IBAction func startReminding(_ sender: Any) {
         appDelegate?.sendNotification()
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //userName.text = myString
-        loadEvents()
-        currentUser = u2
-        u1.eventsVisited = Array(addedEvents[1...3])
-        u1.eventsOrganized = addedEvents.filter({$0.organizer?.id == u1.id})
-        u2.eventsOrganized = addedEvents.filter({$0.organizer?.id == u2.id})
-        /*let data = UserDefaults.standard.data(forKey: "token")
-        let token = Token().fromJSON(json: data!).authToken!
-        let authPlugin = AccessTokenPlugin(tokenClosure: token)
-        let provider = MoyaProvider<APIService>(plugins: [authPlugin])
-        provider.request(.getUser) {
-            result in
-            switch result {
-            case let .success(moyaResponse):
-                do {
-                    let response = try moyaResponse.map(Response.self)
-                    print(response.data!)
-                }
-                catch {
-                    let error = error as? MoyaError
-                    print(error!)
-                }
-                
-            case let .failure(error):
-                print(error)
-            }
-        }*/
+        let userid = UserDefaults.standard.string(forKey: "user")
+        try! realm = Realm()
+        currentUser = realm?.object(ofType: User.self, forPrimaryKey: userid)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        allEvents = realm?.objects(Event.self)
+        userName.text = currentUser.firstName + " " + currentUser.lastName
+        userImage.image = currentUser.image.image ?? #imageLiteral(resourceName: "cat")
+        organized = AnyRealmCollection(currentUser.eventsOrganized)
+        visited = AnyRealmCollection(currentUser.eventsVisited)
+        visitorOrganizerSC.selectedSegmentIndex = 0
+        visitorOrganizerSC.sendActions(for: UIControlEvents.valueChanged)
+        checkStatus()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -66,9 +53,9 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return currentEvents.count
+            return currentEvents!.count
         case 1:
-            return pastEvents.count
+            return pastEvents!.count
         default:
             return 0
         }
@@ -80,16 +67,16 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         switch indexPath.section {
         case 0:
-            e = currentEvents[indexPath.row]
+            e = currentEvents?[indexPath.row]
         case 1:
-            e = pastEvents[indexPath.row]
+            e = pastEvents?[indexPath.row]
         default:
             return cell
         }
         
         cell.eventName.text = e!.name
-        cell.eventDates.text = (e!.timeStart?.toString())!+" - "+(e!.timeEnd?.toString())!
-        cell.eventImage.image = e!.image?.image
+        cell.eventDates.text = (e!.timeStart.toString())+" - "+(e!.timeEnd.toString())
+        cell.eventImage.image = e!.image.image
         cell.eventPlace.text = e!.place
         return cell
     }
@@ -106,12 +93,11 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             if let indexPath = eventsTableView.indexPathForSelectedRow {
 
                 let vc = segue.destination as! EventViewController
-                vc.currentUser = currentUser
                 switch indexPath.section {
                 case 0:
-                    vc.selectedEvent = currentEvents[indexPath.row]
+                    vc.selectedEvent = currentEvents?[indexPath.row]
                 case 1:
-                    vc.selectedEvent = pastEvents[indexPath.row]
+                    vc.selectedEvent = pastEvents?[indexPath.row]
                 default:
                     break
                 }
@@ -119,35 +105,38 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    
     @IBAction func indexChanged(_ sender: UISegmentedControl) {
         changeSelection()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        visited = searchText.isEmpty ? currentUser.eventsVisited : currentUser.eventsVisited.filter( { ($0.name?.localizedCaseInsensitiveContains(searchText))! })
-        organized = searchText.isEmpty ? currentUser.eventsOrganized : currentUser.eventsOrganized.filter( { ($0.name?.localizedCaseInsensitiveContains(searchText))! })
-        allEvents = searchText.isEmpty ? addedEvents : addedEvents.filter( { ($0.name?.localizedCaseInsensitiveContains(searchText))! })
+        if eventsSwitch.isOn || visitorOrganizerSC.selectedSegmentIndex == 1 {
+            visited = searchText.isEmpty ? AnyRealmCollection(currentUser.eventsVisited) : AnyRealmCollection(currentUser.eventsVisited.filter("name contains[c] %@", searchText))
+            organized = searchText.isEmpty ? AnyRealmCollection(currentUser.eventsOrganized) : AnyRealmCollection(currentUser.eventsOrganized.filter("name contains[c] %@", searchText))
+        } else {
+            allEvents = searchText.isEmpty ? realm?.objects(Event.self): realm?.objects(Event.self).filter("name contains[c] %@", searchText)
+        }
         changeSelection()
     }
-    
     
     @IBAction func switchToggled(_ sender: UISwitch) {
         checkStatus()
     }
     
     func checkStatus() {
-        if eventsSwitch.isOn {
-            switchLabel.text = "Showing my events"
-            pastEvents = visited.filter({$0.timeEnd! < Date()}).sorted(by: { $0.timeStart! > $1.timeStart! })
-            currentEvents = visited.filter({$0.timeEnd! >= Date()}).sorted(by: { $0.timeStart! < $1.timeStart! })
-        } else {
-            switchLabel.text = "Showing all events"
-            pastEvents = allEvents.filter({$0.timeEnd! < Date()}).sorted(by: { $0.timeStart! > $1.timeStart! })
-            currentEvents = allEvents.filter({$0.timeEnd! >= Date()}).sorted(by: { $0.timeStart! < $1.timeStart! })
+        if let visited = visited, let allEvents = allEvents {
+            if eventsSwitch.isOn {
+                switchLabel.text = "Showing my events"
+                pastEvents = AnyRealmCollection(visited.filter("timeEnd < %@", Date()).sorted(byKeyPath: "timeStart", ascending: false))
+                currentEvents = AnyRealmCollection(visited.filter("timeEnd >= %@", Date()).sorted(byKeyPath: "timeStart", ascending: true))
+            } else {
+                switchLabel.text = "Showing all events"
+                pastEvents = AnyRealmCollection(allEvents.filter("timeEnd < %@", Date()).sorted(byKeyPath: "timeStart", ascending: false))
+                currentEvents = AnyRealmCollection(allEvents.filter("timeEnd >= %@", Date()).sorted(byKeyPath: "timeStart", ascending: true))
+            }
+            
+            eventsTableView.reloadData()
         }
-        
-        eventsTableView.reloadData()
     }
     
     func changeSelection() {
@@ -157,27 +146,18 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             checkStatus()
             eventsSwitch.isEnabled = true
         case 1:
-            pastEvents = organized.filter({$0.timeEnd! < Date()}).sorted(by: { $0.timeStart! > $1.timeStart! })
-            currentEvents = organized.filter({$0.timeEnd! >= Date()}).sorted(by: { $0.timeStart! < $1.timeStart! })
-            eventsSwitch.isEnabled = false
-            eventsTableView.reloadData()
+            if let organized = organized {
+                pastEvents = AnyRealmCollection(organized.filter("timeEnd < %@", Date()).sorted(byKeyPath: "timeStart", ascending: false))
+                currentEvents = AnyRealmCollection(organized.filter("timeEnd >= %@", Date()).sorted(byKeyPath: "timeStart", ascending: true))
+                eventsSwitch.isEnabled = false
+                eventsTableView.reloadData()
+            }
         default:
             break
         }
     }
+ 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        currentUser = u2
-        allEvents = addedEvents
-        userName.text = currentUser.name
-        userImage.image = currentUser.image?.image
-        organized = currentUser.eventsOrganized
-        visited = currentUser.eventsVisited
-        visitorOrganizerSC.selectedSegmentIndex = 0
-        visitorOrganizerSC.sendActions(for: UIControlEvents.valueChanged)
-        checkStatus()
     }
 }

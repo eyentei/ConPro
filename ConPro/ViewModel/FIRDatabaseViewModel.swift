@@ -43,8 +43,8 @@ class FIRBaseViewModel{
                 return
             }
             
-            self.currentUser.firBaseUid = user!.uid
-            let currentUserReference = self.databaseReference?.child("users").child(self.event.name!).child(user!.uid)
+            self.currentUser.firBaseUid = user!.user.uid
+            let currentUserReference = self.databaseReference?.child("users").child(self.event.name).child(user!.user.uid)
             currentUserReference?.observeSingleEvent(of: .value, with: { (userSnapshot) in
                 //Save chat status from database
                 if let userJSON = (userSnapshot.value as? [String : Any]){
@@ -60,14 +60,14 @@ class FIRBaseViewModel{
     
     func createUserInFirebase(with completion: @escaping()->Void){
         Auth.auth().createUser(withEmail: currentUser.email, password: currentUser.password) { (user, error) in
-            guard error == nil, let uid = user?.uid else{
+            guard error == nil, let uid = user?.user.uid else{
                 self.delegate?.didRecieveException(title: "Error", message: error!.localizedDescription)
                 return
             }
             
             self.currentUser.firBaseUid = uid
             var status : ChatStatus!
-            switch (self.currentUser.id == self.event.organizer?.id){
+            switch (self.currentUser.firBaseUid == self.event.organizer?.firBaseUid){
             case true:
                 status = ChatStatus.organizer
                 break
@@ -76,8 +76,8 @@ class FIRBaseViewModel{
                 break
             }
             self.currentUserChatStatus = status
-            let usersReference = self.databaseReference?.child("users").child(self.event.name!).child(uid)
-            usersReference?.updateChildValues(["name" : (self.currentUser.name ?? "Username"), "email" : self.currentUser.email, "password" : self.currentUser.password, "status" : status.rawValue], withCompletionBlock: { (error, ref) in
+            let usersReference = self.databaseReference?.child("users").child(self.event.name).child(uid)
+            usersReference?.updateChildValues(["name" : (self.currentUser.firstName), "email" : self.currentUser.email, "password" : self.currentUser.password, "status" : status.rawValue], withCompletionBlock: { (error, ref) in
                 if error != nil{
                     print(error!.localizedDescription)
                     return
@@ -92,7 +92,7 @@ class FIRBaseViewModel{
     func sendMessage(with text: String){
         let timestamp = Date().timeIntervalSince1970
         let message = Message(text: text, sender: currentUser.firBaseUid!, timestamp: timestamp, isImportant: false)
-        let messageReference = databaseReference?.child("messages").child(event.name!).childByAutoId()
+        let messageReference = databaseReference?.child("messages").child(event.name).childByAutoId()
         messageReference?.updateChildValues(message.getJSONRepresentation(), withCompletionBlock: { (error, ref) in
             guard error == nil else{
                 print(error!.localizedDescription)
@@ -121,14 +121,14 @@ class FIRBaseViewModel{
     
     //MARK: Users
     func fetchAllChatUsers(completion: @escaping(([(User, ChatStatus)]) -> Void)){
-        let usersReference = databaseReference?.child("users").child(event.name!)
+        let usersReference = databaseReference?.child("users").child(event.name)
         usersReference?.observeSingleEvent(of: .value, with: { (snapshot) in
             var fetchedData = [(User, ChatStatus)]()
             if let usersDictionary = snapshot.value as? [String : Any]{
                 for user in usersDictionary{
                     if let userJSON = user.value as? [String : Any]{
                         if let name = userJSON["name"] as? String, let email = userJSON["email"] as? String, let password = userJSON["password"] as? String, let status = userJSON["status"] as? String{
-                            let fetchedUser = User(id: 0, name: name, image: #imageLiteral(resourceName: "cat").data!, email: email, password: password)
+                            let fetchedUser = User(name: name, image: #imageLiteral(resourceName: "cat").data!, email: email, password: password)
                             fetchedUser.firBaseUid = user.key
                             let fetchedStatus = ChatStatus(rawValue: status)!
                             fetchedData.append((fetchedUser, fetchedStatus))
@@ -142,23 +142,23 @@ class FIRBaseViewModel{
     
     //MARK: Manage messages
     func deleteMessage(with id: String){
-        let messageReference = databaseReference?.child("messages").child(event.name!).child(id)
+        let messageReference = databaseReference?.child("messages").child(event.name).child(id)
         messageReference?.removeValue()
     }
     
     func setMessageImportancy(for id: String, isImportant: Bool){
-        let messageReference = databaseReference?.child("messages").child(event.name!).child(id).child("isImportant")
+        let messageReference = databaseReference?.child("messages").child(event.name).child(id).child("isImportant")
         messageReference?.setValue(isImportant)
     }
     
     //MARK: Manage users
     func muteUser(with id: String){
-        let userStatusReference = databaseReference?.child("users").child(event.name!).child(id).child("status")
+        let userStatusReference = databaseReference?.child("users").child(event.name).child(id).child("status")
         userStatusReference?.setValue(ChatStatus.muted.rawValue)
     }
     
     func adminUser(with id: String, shouldBecameAdmin: Bool){
-        let userStatusReference = databaseReference?.child("users").child(event.name!).child(id).child("status")
+        let userStatusReference = databaseReference?.child("users").child(event.name).child(id).child("status")
         if shouldBecameAdmin{
             userStatusReference?.setValue(ChatStatus.admin.rawValue)
         } else{
@@ -169,7 +169,7 @@ class FIRBaseViewModel{
     func setUserStatusObserver(){
         print("Observer Set")
         if let currentUserUid = currentUser.firBaseUid{
-            let currentUserReference = databaseReference?.child("users").child(event.name!).child(currentUserUid).child("status")
+            let currentUserReference = databaseReference?.child("users").child(event.name).child(currentUserUid).child("status")
             currentUserReference?.observe(.value, with: { (snapshot) in
                 if let newStatus = snapshot.value as? String{
                     self.currentUserChatStatus = ChatStatus(rawValue: newStatus)

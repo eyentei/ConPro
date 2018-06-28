@@ -1,4 +1,4 @@
-
+import RealmSwift
 import UIKit
 
 class NewsAdderViewController: UIViewController, UITextViewDelegate {
@@ -11,22 +11,19 @@ class NewsAdderViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var modalWindow: UIView!
     @IBOutlet weak var symbolsLeft: UILabel!
     
-    @IBAction func publishAction(_ sender: Any) {
-        
-        self.self.selectedEvent?.news.append(News(id: (self.selectedEvent?.news.count)!+1, name: (self.self.selectedEvent?.name)!, message: self.newsMessage.text))
-        
-        self.selectedEvent?.news.last?.eventIcon = self.selectedEvent?.image
-        
-        newsViewController.newsTableView.reloadData()
-        
-        dismiss(animated: true, completion: nil)
-        
-    }
+//    @IBAction func publishAction(_ sender: Any) {
+//        let realm = try! Realm()
+//
+////        try! realm.write {
+////            selectedEvent?.news.append(News(name: (selectedEvent?.name)!, message: newsMessage.text))
+////            selectedEvent?.news.last?.eventIcon = (selectedEvent?.image)!
+////            newsViewController.newsTableView.reloadData()
+////            dismiss(animated: true, completion: nil)
+////        }
+//    }
     @IBAction func cancelButton(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,16 +32,6 @@ class NewsAdderViewController: UIViewController, UITextViewDelegate {
         symbolsLeft.text = "230"
         publishButton.isEnabled = false
         
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        
-        if segue.identifier == "backSegueToNews" {
-            
-            let vc = segue.destination as! NewsViewController
-            vc.selectedEvent = selectedEvent
-            
-        }
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {

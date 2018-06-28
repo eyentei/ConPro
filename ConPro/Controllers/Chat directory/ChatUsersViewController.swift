@@ -80,15 +80,15 @@ extension ChatUsersViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Chat User Cell", for: indexPath) as! ChatUserTableViewCell
-        cell.userNameLabel.text = users[indexPath.row].0.name
+        cell.userNameLabel.text = users[indexPath.row].0.firstName
         cell.statusLabel.text = users[indexPath.row].1.rawValue
-        cell.imageView?.image = UIImage(data: users[indexPath.row].0.image!)
+        cell.imageView?.image = UIImage(data: users[indexPath.row].0.image)
         return cell
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         //Cannot edit personal row
-        if users[indexPath.row].0.id == currentUser.id{
+        if users[indexPath.row].0.firBaseUid == currentUser.firBaseUid{
             return false
         }
         switch databaseViewModel.currentUserChatStatus!{

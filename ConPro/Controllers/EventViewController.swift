@@ -1,9 +1,9 @@
 import UIKit
+import RealmSwift
 
 class EventViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var selectedEvent: Event?
-    var currentUser: User?
 
     var menu = [[#imageLiteral(resourceName: "info"),"Info"],[#imageLiteral(resourceName: "news"),"News Feed"],[#imageLiteral(resourceName: "people"),"Participants"],[#imageLiteral(resourceName: "calendar"),"Schedule"],[#imageLiteral(resourceName: "map"),"Map"],[#imageLiteral(resourceName: "mic"),"Speakers"],[#imageLiteral(resourceName: "chat"),"Chat"],[#imageLiteral(resourceName: "list"),"Subevents"]]
     @IBOutlet weak var menuCollectionView: UICollectionView!
@@ -36,17 +36,12 @@ class EventViewController: UIViewController, UICollectionViewDelegate, UICollect
         case "News Feed":
             let vc = segue.destination as! NewsViewController
             vc.selectedEvent = selectedEvent
-            vc.currentUser = currentUser
         case "Info":
             let vc = segue.destination as! InfoViewController
             vc.selectedEvent = selectedEvent
         case "EventEdit":
             let vc = segue.destination as! EventEditViewController
             vc.selectedEvent = selectedEvent
-        case "Show Chat View Controller":
-            let destinationViewController = segue.destination as? ChatViewController
-            destinationViewController?.event = selectedEvent
-            destinationViewController?.currentUser = currentUser
         case "Statistics":
             if #available(iOS 11.0, *) {
                 let vc = segue.destination as! EventStatsViewController
@@ -54,6 +49,10 @@ class EventViewController: UIViewController, UICollectionViewDelegate, UICollect
             } else {
                 // Fallback on earlier versions
             }
+        case "Show Chat View Controller":
+            let destinationViewController = segue.destination as? ChatViewController
+            destinationViewController?.event = selectedEvent
+            destinationViewController?.currentUser = currentUser
         default:
             break
         }
@@ -62,31 +61,39 @@ class EventViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        statusButton.title = currentUser?.eventsVisited.filter({$0.id == selectedEvent?.id}) != [] ? "Unsubscribe" : "Subscribe"
-
-        if selectedEvent?.organizer?.id == currentUser?.id {
-            menu.append([#imageLiteral(resourceName: "stats"),"Statistics"])
-            statusButton.title = "Edit"
+        if let event = selectedEvent {
+            statusButton.title = event.visitors.contains(currentUser) ? "Unsubscribe" : "Subscribe"
+            if event.organizer == currentUser {
+                menu.append([#imageLiteral(resourceName: "stats"),"Statistics"])
+                statusButton.title = "Edit"
+            }
         }
-        eventNameLabel.text = selectedEvent?.name
-        eventImage.image = selectedEvent?.image?.image
-
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        eventNameLabel.text = selectedEvent?.name
+        eventImage.image = selectedEvent?.image.image
+    }
+    
     @IBAction func subscribeOrUnsubscribe( _ sender: UIBarButtonItem) {
-        switch sender.title {
-        case "Subscribe":
-            currentUser?.eventsVisited.append(selectedEvent!)
-            sender.title = "Unsubscribe"
-        case "Unsubscribe":
-            currentUser?.eventsVisited = (currentUser?.eventsVisited.filter({$0.id != selectedEvent?.id}))!
-            sender.title = "Subscribe"
-        case "Edit":
-            //segue to event edit screen
-            performSegue(withIdentifier: "EventEdit", sender: self)
-        default:
-            break
+        let realm = try! Realm()
+        try! realm.write {
+            switch sender.title {
+            case "Subscribe":
+                selectedEvent?.visitors.append(currentUser)
+                sender.title = "Unsubscribe"
+            case "Unsubscribe":
+                let userIndex = selectedEvent?.visitors.index(of: currentUser)
+                selectedEvent?.visitors.remove(at: userIndex!)
+                sender.title = "Subscribe"
+            case "Edit":
+                //segue to event edit screen
+                performSegue(withIdentifier: "EventEdit", sender: self)
+            default:
+                break
+            }
         }
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

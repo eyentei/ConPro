@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
 class CorrectPersonalDataViewController: UITableViewController, UITextFieldDelegate {
     override func viewDidLoad() {
@@ -17,7 +18,6 @@ class CorrectPersonalDataViewController: UITableViewController, UITextFieldDeleg
     
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         if sender.state == .ended {
-            // Do your thang here!
             self.view.endEditing(true)
             for textField in self.view.subviews where textField is UITextField {
                 textField.resignFirstResponder()
@@ -40,15 +40,7 @@ class CorrectPersonalDataViewController: UITableViewController, UITextFieldDeleg
     @IBOutlet weak var presentpost: UITextField!
     @IBOutlet weak var Education: UITextField!
     @IBOutlet weak var Adress: UILabel!
-    
-    @IBAction func ChangeUserName(_ sender: Any) {
-        if firstName.text != "" {
-            //performSegue(withIdentifier: "EventsViewController", sender: self)
-            //print("OK")
-            u1.name = firstName.text
-            navigationController?.popViewController(animated: true)
-        }
-    }
+
     
     /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         var eventsController = segue.destination as! EventsViewController
@@ -56,32 +48,10 @@ class CorrectPersonalDataViewController: UITableViewController, UITextFieldDeleg
     }*/
     
     override func viewDidAppear(_ animated: Bool) {
-        if let x1 = UserDefaults.standard.object(forKey: "firstName") as? String {
-            firstName.text = x1
-        }
-        if let x2 = UserDefaults.standard.object(forKey: "secondName") as? String {
-            secondName.text = x2
-        }
-        if let x3 = UserDefaults.standard.object(forKey: "Age") as? String {
-            Age.text = x3
-        }
-        //if let y1 = UserDefaults.standard.object(forKey: "email") as? String {
-           // email.text = y1
-        //}
-        //if let y2 = UserDefaults.standard.object(forKey: "phonenumber") as? String {
-            //phonenumber.text = y2
-        //}
-        //if let z1 = UserDefaults.standard.object(forKey: "company") as? String {
-            //company.text = z1
-        //}
-        //if let z2 = UserDefaults.standard.object(forKey: "presentpost") as? String {
-            //presentpost.text = z2
-        //}
         
-        
-        
+        firstName.text = currentUser.firstName
+        // и тд
     }
-    
     
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -90,16 +60,13 @@ class CorrectPersonalDataViewController: UITableViewController, UITextFieldDeleg
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        UserDefaults.standard.set(firstName.text, forKey: "firstName")
-        UserDefaults.standard.set(secondName.text, forKey: "secondName")
-        UserDefaults.standard.set(Age.text, forKey: "Age")
-        
-        //UserDefaults.standard.set(email.text, forKey: "email")
-        //UserDefaults.standard.set(phonenumber.text, forKey: "phonenumber")
-        
-        //UserDefaults.standard.set(company.text, forKey: "company")
-        //UserDefaults.standard.set(presentpost.text, forKey: "presentpost")
-
+        let realm = try! Realm()
+        try! realm.write {
+            if let firstName = firstName.text {
+                currentUser.firstName = firstName
+            }
+            // и так далее
+        }
     }
     
     

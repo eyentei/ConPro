@@ -7,17 +7,26 @@
 //
 
 import UIKit
+import RealmSwift
 
-class EventEditViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class EventEditViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     var selectedEvent: Event?
+    
+    @IBOutlet weak var categoryTextField: UITextField!
+    let eventCategories = ["Category","IT","Business","Nature", "Videogames", "Innovations", "Sports", "Music"]
+    var pickerView = UIPickerView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        categoryTextField.inputView = pickerView
+        
         TitleTextField.text = selectedEvent?.name
         PlaceTextField.text = selectedEvent?.place
         ImageView.image = UIImage(data: (selectedEvent?.image)!)
-        DateStart.text = selectedEvent?.timeStart?.toString()
-        DateFinish.text = selectedEvent?.timeEnd?.toString()
+        DateStart.text = selectedEvent?.timeStart.toString()
+        DateFinish.text = selectedEvent?.timeEnd.toString()
         
     }
     @IBOutlet weak var TitleTextField: UITextField!
@@ -47,15 +56,46 @@ class EventEditViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     @IBAction func SaveEdit(_ sender: Any) {
-        addedEvents[(selectedEvent?.id)! - 1].name = TitleTextField.text
-        addedEvents[(selectedEvent?.id)! - 1].place = PlaceTextField.text
-        addedEvents[(selectedEvent?.id)! - 1].image = ImageView.image?.data
-        addedEvents[(selectedEvent?.id)! - 1].timeStart = Date(date: DateStart.text!)
-        addedEvents[(selectedEvent?.id)! - 1].timeEnd = Date(date: DateFinish.text!)
-        addedEvents[(selectedEvent?.id)! - 1].eventDescription = DescrTextField.text
+        
+        
+        let realm = try! Realm()
+        
+        try! realm.write {
+            if let name = TitleTextField.text {
+                selectedEvent?.name = name
+            }
+            if let place = PlaceTextField.text {
+                selectedEvent?.place = place
+            }
+            if let image = ImageView.image {
+                selectedEvent?.image = image.resized(toWidth: 100)!.data!
+            }
+            
+            if let timeStart = Date(date: DateStart.text!) {
+                selectedEvent?.timeStart = timeStart
+            }
+            if let timeEnd = Date(date: DateFinish.text!) {
+                selectedEvent?.timeEnd = timeEnd
+            }
+            selectedEvent?.eventDescription = DescrTextField.text
+            navigationController?.popViewController(animated: true)
+        }
     }
     
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
     
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return eventCategories.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return eventCategories[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        categoryTextField.text = eventCategories[row]
+        categoryTextField.resignFirstResponder()
+    }
     
     
     override func didReceiveMemoryWarning() {

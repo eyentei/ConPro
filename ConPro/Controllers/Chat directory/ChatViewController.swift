@@ -34,7 +34,7 @@ class ChatViewController: UIViewController{
         view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
         databaseViewModel!.authUserInFirebase {
-            self.databaseViewModel!.setMessagesObserver(for: self.event.name!)
+            self.databaseViewModel!.setMessagesObserver(for: self.event.name)
             self.activityIndicator.stopAnimating()
             self.activityIndicator.removeFromSuperview()
         }
@@ -47,7 +47,7 @@ class ChatViewController: UIViewController{
     }
     
     deinit {
-        databaseViewModel?.removeMessagesObserver(for: event.name!)
+        databaseViewModel?.removeMessagesObserver(for: event.name)
     }
     
     //MARK: Actions
